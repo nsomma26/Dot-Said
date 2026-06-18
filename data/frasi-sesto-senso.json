@@ -1,1129 +1,1125 @@
 {
-  "version": 1,
+  "version": 2,
   "frasi": [
     {
-      "frase": "Vorrei dirti grazie per avermi ascoltato quando non trovavo le parole.",
-      "sintesi": "Grazie per avermi ascoltato",
+      "frase": "Ti sono grato anche se non l'ho mai detto.",
+      "sintesi": "Ti sono grato anche se non l'ho mai detto",
       "categoriaPrincipale": "gratitudine",
       "categorieSecondarie": [],
       "id": 1
     },
     {
-      "frase": "Non riesco a dire quanto mi abbia fatto bene la tua presenza silenziosa.",
-      "sintesi": "La tua presenza mi ha fatto bene",
+      "frase": "Mi hai aiutato più di quanto immagini davvero.",
+      "sintesi": "Mi hai aiutato più di quanto immagini davvero",
       "categoriaPrincipale": "gratitudine",
       "categorieSecondarie": [],
       "id": 2
     },
     {
-      "frase": "Vorrei ringraziarti per avermi visto anche quando mi nascondevo.",
-      "sintesi": "Mi hai visto quando mi nascondevo",
+      "frase": "Vorrei ringraziarti senza sembrare debole o esagerato.",
+      "sintesi": "Vorrei ringraziarti senza sembrare debole o",
       "categoriaPrincipale": "gratitudine",
       "categorieSecondarie": [],
       "id": 3
     },
     {
-      "frase": "Ho paura di sembrare fragile se ammetto che mi hai salvato la giornata.",
-      "sintesi": "Mi hai salvato la giornata",
+      "frase": "Ti penso con gratitudine, anche da lontano.",
+      "sintesi": "Ti penso con gratitudine, anche da lontano",
       "categoriaPrincipale": "gratitudine",
       "categorieSecondarie": [],
       "id": 4
     },
     {
-      "frase": "Vorrei dire grazie a chi è rimasto senza chiedermi spiegazioni.",
-      "sintesi": "Grazie a chi è rimasto",
+      "frase": "Hai fatto per me più del necessario.",
+      "sintesi": "Hai fatto per me più del necessario",
       "categoriaPrincipale": "gratitudine",
       "categorieSecondarie": [],
       "id": 5
     },
     {
-      "frase": "Non riesco a dire che quel messaggio mi ha tenuto in piedi.",
-      "sintesi": "Quel messaggio mi ha aiutato",
+      "frase": "Mi hai dato presenza quando non chiedevo nulla.",
+      "sintesi": "Mi hai dato presenza quando non chiedevo nulla",
       "categoriaPrincipale": "gratitudine",
       "categorieSecondarie": [],
       "id": 6
     },
     {
-      "frase": "Vorrei ringraziare chi mi ha dato tempo invece di giudicarmi.",
-      "sintesi": "Mi hai dato tempo",
+      "frase": "Non dimentico chi mi ha fatto sentire visto.",
+      "sintesi": "Non dimentico chi mi ha fatto sentire visto",
       "categoriaPrincipale": "gratitudine",
       "categorieSecondarie": [],
       "id": 7
     },
     {
-      "frase": "Ho paura di dire quanto conto sul tuo modo gentile di esserci.",
-      "sintesi": "Conto sulla tua gentilezza",
+      "frase": "Ti devo più parole di quelle che uso.",
+      "sintesi": "Ti devo più parole di quelle che uso",
       "categoriaPrincipale": "gratitudine",
       "categorieSecondarie": [],
       "id": 8
     },
     {
-      "frase": "Vorrei dirti che mi hai fatto sentire meno solo senza accorgertene.",
-      "sintesi": "Mi hai fatto sentire meno solo",
+      "frase": "Mi hai sostenuto anche senza accorgertene davvero.",
+      "sintesi": "Mi hai sostenuto anche senza accorgertene",
       "categoriaPrincipale": "gratitudine",
       "categorieSecondarie": [],
       "id": 9
     },
     {
-      "frase": "Non riesco a dire grazie perché temo che sia troppo poco.",
-      "sintesi": "Temo che grazie sia poco",
+      "frase": "Vorrei dirti grazie, ma mi blocco sempre.",
+      "sintesi": "Vorrei dirti grazie, ma mi blocco sempre",
       "categoriaPrincipale": "gratitudine",
       "categorieSecondarie": [],
       "id": 10
     },
     {
-      "frase": "Vorrei ringraziarti per aver creduto in me prima che ci riuscissi io.",
-      "sintesi": "Hai creduto in me",
+      "frase": "Ho capito tardi quanto mi sei stato vicino.",
+      "sintesi": "Ho capito tardi quanto mi sei stato vicino",
       "categoriaPrincipale": "gratitudine",
       "categorieSecondarie": [],
       "id": 11
     },
     {
-      "frase": "Ho paura di commuovermi se ti dico quanto sei stato importante.",
-      "sintesi": "Sei stato importante",
+      "frase": "Alcune persone aiutano senza pretendere spiegazioni.",
+      "sintesi": "Alcune persone aiutano senza pretendere",
       "categoriaPrincipale": "gratitudine",
       "categorieSecondarie": [],
       "id": 12
     },
     {
-      "frase": "Vorrei dire che custodisco ancora quella gentilezza minuscola.",
-      "sintesi": "Custodisco la tua gentilezza",
+      "frase": "Mi hai fatto sentire meno solo, davvero.",
+      "sintesi": "Mi hai fatto sentire meno solo, davvero",
       "categoriaPrincipale": "gratitudine",
       "categorieSecondarie": [],
       "id": 13
     },
     {
-      "frase": "Non riesco a dire quanto mi abbia cambiato essere accolto così.",
-      "sintesi": "Essere accolto mi ha cambiato",
+      "frase": "Ti ringrazio dentro, anche quando non parlo.",
+      "sintesi": "Ti ringrazio dentro, anche quando non parlo",
       "categoriaPrincipale": "gratitudine",
       "categorieSecondarie": [],
       "id": 14
     },
     {
-      "frase": "Vorrei ringraziare chi mi ha lasciato respirare senza farmi domande.",
-      "sintesi": "Mi hai lasciato respirare",
+      "frase": "Hai avuto cura di me senza chiedere niente.",
+      "sintesi": "Hai avuto cura di me senza chiedere niente",
       "categoriaPrincipale": "gratitudine",
       "categorieSecondarie": [],
       "id": 15
     },
     {
-      "frase": "Vorrei dire che oggi mi sento leggero senza dovermi giustificare.",
-      "sintesi": "Oggi mi sento leggero",
-      "categoriaPrincipale": "felicità",
+      "frase": "Mi ricordo bene chi c'era nei momenti peggiori.",
+      "sintesi": "Mi ricordo bene chi c'era nei momenti peggiori",
+      "categoriaPrincipale": "gratitudine",
       "categorieSecondarie": [],
       "id": 16
     },
     {
-      "frase": "Non riesco a dire che questa gioia mi spaventa perché non sono abituato.",
-      "sintesi": "Questa gioia mi spaventa",
-      "categoriaPrincipale": "felicità",
+      "frase": "La tua presenza mi ha cambiato alcune giornate.",
+      "sintesi": "La tua presenza mi ha cambiato alcune giornate",
+      "categoriaPrincipale": "gratitudine",
       "categorieSecondarie": [],
       "id": 17
     },
     {
-      "frase": "Vorrei ammettere che sto bene e non voglio rovinare tutto pensando al dopo.",
-      "sintesi": "Sto bene adesso",
-      "categoriaPrincipale": "felicità",
+      "frase": "Non so dirtelo bene, ma ti sono grato.",
+      "sintesi": "Non so dirtelo bene, ma ti sono grato",
+      "categoriaPrincipale": "gratitudine",
       "categorieSecondarie": [],
       "id": 18
     },
     {
-      "frase": "Ho paura di dire che quando rido con te mi dimentico il resto.",
-      "sintesi": "Con te dimentico il resto",
-      "categoriaPrincipale": "felicità",
+      "frase": "Hai fatto la differenza, anche nei dettagli piccoli.",
+      "sintesi": "Hai fatto la differenza, anche nei dettagli",
+      "categoriaPrincipale": "gratitudine",
       "categorieSecondarie": [],
       "id": 19
     },
     {
-      "frase": "Vorrei raccontare che una cosa piccola mi ha reso felice per ore.",
-      "sintesi": "Una cosa piccola mi ha reso felice",
-      "categoriaPrincipale": "felicità",
+      "frase": "Mi hai dato forza quando non ne avevo.",
+      "sintesi": "Mi hai dato forza quando non ne avevo",
+      "categoriaPrincipale": "gratitudine",
       "categorieSecondarie": [],
       "id": 20
     },
     {
-      "frase": "Non riesco a dire che sono fiero di me anche se sembra poco.",
-      "sintesi": "Sono fiero di me",
+      "frase": "Mi sento bene quando posso essere me stesso.",
+      "sintesi": "Mi sento bene quando posso essere me stesso",
       "categoriaPrincipale": "felicità",
       "categorieSecondarie": [],
       "id": 21
     },
     {
-      "frase": "Vorrei dire che ho passato una giornata bella senza sentirmi in colpa.",
-      "sintesi": "Una giornata bella senza colpa",
+      "frase": "Con te rido senza dover controllare tutto.",
+      "sintesi": "Con te rido senza dover controllare tutto",
       "categoriaPrincipale": "felicità",
       "categorieSecondarie": [],
       "id": 22
     },
     {
-      "frase": "Ho paura di sembrare ingenuo se dico che credo ancora nelle cose buone.",
-      "sintesi": "Credo ancora nelle cose buone",
+      "frase": "Mi basta poco per sentirmi felice davvero.",
+      "sintesi": "Mi basta poco per sentirmi felice davvero",
       "categoriaPrincipale": "felicità",
       "categorieSecondarie": [],
       "id": 23
     },
     {
-      "frase": "Vorrei dirti che mi fai venire voglia di restare nel presente.",
-      "sintesi": "Mi fai restare nel presente",
+      "frase": "Alcuni giorni migliorano appena ti sento arrivare.",
+      "sintesi": "Alcuni giorni migliorano appena ti sento",
       "categoriaPrincipale": "felicità",
       "categorieSecondarie": [],
       "id": 24
     },
     {
-      "frase": "Non riesco a dire che questa volta mi sono scelto e mi ha fatto bene.",
-      "sintesi": "Mi sono scelto",
+      "frase": "Sorrido spesso pensando a cose semplici con te.",
+      "sintesi": "Sorrido spesso pensando a cose semplici con te",
       "categoriaPrincipale": "felicità",
       "categorieSecondarie": [],
       "id": 25
     },
     {
-      "frase": "Vorrei ammettere che mi piace la persona che sto diventando.",
-      "sintesi": "Mi piace chi sto diventando",
+      "frase": "Mi fai stare leggero senza fare nulla.",
+      "sintesi": "Mi fai stare leggero senza fare nulla",
       "categoriaPrincipale": "felicità",
       "categorieSecondarie": [],
       "id": 26
     },
     {
-      "frase": "Ho paura che la felicità finisca se la nomino ad alta voce.",
-      "sintesi": "Temo di nominare la felicità",
+      "frase": "Questa felicità mi sorprende, perché non la cercavo.",
+      "sintesi": "Questa felicità mi sorprende, perché non la",
       "categoriaPrincipale": "felicità",
       "categorieSecondarie": [],
       "id": 27
     },
     {
-      "frase": "Vorrei dire che mi sento finalmente al posto giusto.",
-      "sintesi": "Mi sento al posto giusto",
+      "frase": "Sto bene quando non devo fingere niente.",
+      "sintesi": "Sto bene quando non devo fingere niente",
       "categoriaPrincipale": "felicità",
       "categorieSecondarie": [],
       "id": 28
     },
     {
-      "frase": "Non riesco a dire che oggi ho sorriso senza fingere.",
-      "sintesi": "Ho sorriso senza fingere",
+      "frase": "Mi piace quello che divento vicino a te.",
+      "sintesi": "Mi piace quello che divento vicino a te",
       "categoriaPrincipale": "felicità",
       "categorieSecondarie": [],
       "id": 29
     },
     {
-      "frase": "Vorrei conservare questa felicità semplice prima che qualcuno la ridimensioni.",
-      "sintesi": "Voglio conservare questa felicità",
+      "frase": "Certi momenti normali mi rendono felice per ore.",
+      "sintesi": "Certi momenti normali mi rendono felice per ore",
       "categoriaPrincipale": "felicità",
       "categorieSecondarie": [],
       "id": 30
     },
     {
-      "id": 31,
-      "frase": "Vorrei dirti che controllo se hai visualizzato i miei messaggi.",
-      "sintesi": "Controllo se hai visualizzato i messaggi",
-      "categoriaPrincipale": "desiderio",
-      "categorieSecondarie": [
-        "paura",
-        "malinconia"
-      ]
+      "frase": "Mi sento vivo quando smetto di proteggermi.",
+      "sintesi": "Mi sento vivo quando smetto di proteggermi",
+      "categoriaPrincipale": "felicità",
+      "categorieSecondarie": [],
+      "id": 31
     },
     {
-      "id": 32,
-      "frase": "Vorrei dire che non voglio abbracciare tutti solo perché \"si fa così\".",
-      "sintesi": "Non voglio abbracciare tutti",
-      "categoriaPrincipale": "desiderio",
-      "categorieSecondarie": [
-        "paura",
-        "rabbia"
-      ]
+      "frase": "La tua compagnia mi cambia l'umore davvero.",
+      "sintesi": "La tua compagnia mi cambia l'umore davvero",
+      "categoriaPrincipale": "felicità",
+      "categorieSecondarie": [],
+      "id": 32
     },
     {
-      "id": 33,
-      "frase": "Ho paura di dire che non voglio avere figli.",
-      "sintesi": "Non voglio avere figli",
-      "categoriaPrincipale": "desiderio",
-      "categorieSecondarie": [
-        "paura"
-      ]
+      "frase": "Sono felice, anche se non so spiegarlo.",
+      "sintesi": "Sono felice, anche se non so spiegarlo",
+      "categoriaPrincipale": "felicità",
+      "categorieSecondarie": [],
+      "id": 33
     },
     {
-      "id": 34,
-      "frase": "Non riesco a dire che vorrei cambiare città e ricominciare.",
-      "sintesi": "Vorrei cambiare città",
-      "categoriaPrincipale": "desiderio",
-      "categorieSecondarie": [
-        "paura",
-        "felicità"
-      ]
+      "frase": "Mi fa bene sentirmi accolto senza sforzo.",
+      "sintesi": "Mi fa bene sentirmi accolto senza sforzo",
+      "categoriaPrincipale": "felicità",
+      "categorieSecondarie": [],
+      "id": 34
     },
     {
-      "id": 35,
-      "frase": "Non riesco a dire che vorrei ricevere più attenzioni.",
-      "sintesi": "Vorrei ricevere più attenzioni",
-      "categoriaPrincipale": "desiderio",
-      "categorieSecondarie": [
-        "tristezza",
-        "paura"
-      ]
+      "frase": "A volte basta sentirti per stare meglio.",
+      "sintesi": "A volte basta sentirti per stare meglio",
+      "categoriaPrincipale": "felicità",
+      "categorieSecondarie": [],
+      "id": 35
     },
     {
-      "id": 36,
-      "frase": "Ho paura di dire che a volte vorrei solo essere scelto per primo.",
-      "sintesi": "Vorrei essere scelto per primo",
-      "categoriaPrincipale": "desiderio",
-      "categorieSecondarie": [
-        "paura",
-        "tristezza"
-      ]
+      "frase": "Mi sento fortunato quando condividiamo qualcosa.",
+      "sintesi": "Mi sento fortunato quando condividiamo qualcosa",
+      "categoriaPrincipale": "felicità",
+      "categorieSecondarie": [],
+      "id": 36
     },
     {
-      "id": 37,
-      "frase": "Non riesco a dire che ho bisogno che qualcuno mi chieda davvero come sto.",
-      "sintesi": "Ho bisogno che qualcuno mi chieda davvero come sto",
-      "categoriaPrincipale": "desiderio",
-      "categorieSecondarie": [
-        "tristezza",
-        "empatia"
-      ]
+      "frase": "Non lo dico, ma mi rendi felice.",
+      "sintesi": "Non lo dico, ma mi rendi felice",
+      "categoriaPrincipale": "felicità",
+      "categorieSecondarie": [],
+      "id": 37
     },
     {
-      "id": 38,
-      "frase": "Non riesco a dire \"resta\" perché ho paura che tu scelga comunque di andare.",
-      "sintesi": "Non riesco a dire \"resta\"",
-      "categoriaPrincipale": "desiderio",
-      "categorieSecondarie": [
-        "paura",
-        "malinconia"
-      ]
+      "frase": "Con te anche il silenzio non pesa.",
+      "sintesi": "Con te anche il silenzio non pesa",
+      "categoriaPrincipale": "felicità",
+      "categorieSecondarie": [],
+      "id": 38
     },
     {
-      "frase": "Vorrei dirti che mi piacerebbe essere cercato senza doverlo chiedere.",
-      "sintesi": "Vorrei essere cercato",
-      "categoriaPrincipale": "desiderio",
+      "frase": "Mi piace questa calma che arriva con te.",
+      "sintesi": "Mi piace questa calma che arriva con te",
+      "categoriaPrincipale": "felicità",
       "categorieSecondarie": [],
       "id": 39
     },
     {
-      "frase": "Non riesco a dire che sogno una vita più mia di questa.",
-      "sintesi": "Sogno una vita più mia",
-      "categoriaPrincipale": "desiderio",
+      "frase": "Sto imparando a riconoscere quando sono felice.",
+      "sintesi": "Sto imparando a riconoscere quando sono felice",
+      "categoriaPrincipale": "felicità",
       "categorieSecondarie": [],
       "id": 40
     },
     {
-      "frase": "Vorrei avere il coraggio di chiedere più spazio per respirare.",
-      "sintesi": "Chiedere più spazio",
+      "frase": "Vorrei avvicinarmi, ma temo di sbagliare tutto.",
+      "sintesi": "Vorrei avvicinarmi, ma temo di sbagliare tutto",
       "categoriaPrincipale": "desiderio",
       "categorieSecondarie": [],
       "id": 41
     },
     {
-      "frase": "Ho paura di confessare che desidero cambiare tutto da capo.",
-      "sintesi": "Desidero cambiare tutto",
+      "frase": "Ti desidero più di quanto riesca ad ammettere.",
+      "sintesi": "Ti desidero più di quanto riesca ad ammettere",
       "categoriaPrincipale": "desiderio",
       "categorieSecondarie": [],
       "id": 42
     },
     {
-      "frase": "Vorrei dirti che aspetto un tuo gesto anche quando fingo indifferenza.",
-      "sintesi": "Aspetto un tuo gesto",
+      "frase": "Mi trattengo perché non so cosa provi.",
+      "sintesi": "Mi trattengo perché non so cosa provi",
       "categoriaPrincipale": "desiderio",
       "categorieSecondarie": [],
       "id": 43
     },
     {
-      "frase": "Non riesco a dire che voglio essere desiderato senza sentirmi in colpa.",
-      "sintesi": "Voglio essere desiderato",
+      "frase": "Vorrei cercarti senza sembrare troppo presente.",
+      "sintesi": "Vorrei cercarti senza sembrare troppo presente",
       "categoriaPrincipale": "desiderio",
       "categorieSecondarie": [],
       "id": 44
     },
     {
-      "frase": "Vorrei ammettere che ho fame di futuro, non solo di sicurezza.",
-      "sintesi": "Ho fame di futuro",
+      "frase": "Ho voglia di dirti tutto, ma aspetto.",
+      "sintesi": "Ho voglia di dirti tutto, ma aspetto",
       "categoriaPrincipale": "desiderio",
       "categorieSecondarie": [],
       "id": 45
     },
     {
-      "frase": "Vorrei che qualcuno capisse il mio silenzio senza costringermi a spiegarlo.",
-      "sintesi": "Capire il mio silenzio",
-      "categoriaPrincipale": "empatia",
+      "frase": "Ti penso anche quando provo a distrarmi.",
+      "sintesi": "Ti penso anche quando provo a distrarmi",
+      "categoriaPrincipale": "desiderio",
       "categorieSecondarie": [],
       "id": 46
     },
     {
-      "frase": "Non riesco a dire che non voglio consigli, voglio solo essere ascoltato.",
-      "sintesi": "Voglio solo ascolto",
-      "categoriaPrincipale": "empatia",
+      "frase": "Mi manca il coraggio di fare un passo.",
+      "sintesi": "Mi manca il coraggio di fare un passo",
+      "categoriaPrincipale": "desiderio",
       "categorieSecondarie": [],
       "id": 47
     },
     {
-      "frase": "Vorrei che tu sentissi quanto mi costa sembrare tranquillo.",
-      "sintesi": "Mi costa sembrare tranquillo",
-      "categoriaPrincipale": "empatia",
+      "frase": "Vorrei sapere se mi pensi anche tu.",
+      "sintesi": "Vorrei sapere se mi pensi anche tu",
+      "categoriaPrincipale": "desiderio",
       "categorieSecondarie": [],
       "id": 48
     },
     {
-      "frase": "Ho paura di parlare perché temo che tu trasformi tutto in una soluzione.",
-      "sintesi": "Non voglio soluzioni",
-      "categoriaPrincipale": "empatia",
+      "frase": "Ti cerco nei gesti più piccoli.",
+      "sintesi": "Ti cerco nei gesti più piccoli",
+      "categoriaPrincipale": "desiderio",
       "categorieSecondarie": [],
       "id": 49
     },
     {
-      "frase": "Vorrei essere guardato con delicatezza quando non so difendermi.",
-      "sintesi": "Guardami con delicatezza",
-      "categoriaPrincipale": "empatia",
+      "frase": "Mi piacerebbe restare, ma temo di invadere.",
+      "sintesi": "Mi piacerebbe restare, ma temo di invadere",
+      "categoriaPrincipale": "desiderio",
       "categorieSecondarie": [],
       "id": 50
     },
     {
-      "frase": "Non riesco a dire che mi basterebbe un abbraccio senza domande.",
-      "sintesi": "Mi basterebbe un abbraccio",
-      "categoriaPrincipale": "empatia",
+      "frase": "Ho desideri che non riesco a dire chiaramente.",
+      "sintesi": "Ho desideri che non riesco a dire chiaramente",
+      "categoriaPrincipale": "desiderio",
       "categorieSecondarie": [],
       "id": 51
     },
     {
-      "frase": "Vorrei che qualcuno notasse quando mi spengo in mezzo agli altri.",
-      "sintesi": "Notare quando mi spengo",
-      "categoriaPrincipale": "empatia",
+      "frase": "Vorrei essere più importante per te.",
+      "sintesi": "Vorrei essere più importante per te",
+      "categoriaPrincipale": "desiderio",
       "categorieSecondarie": [],
       "id": 52
     },
     {
-      "frase": "Ho paura di chiedere comprensione perché sembra sempre troppo.",
-      "sintesi": "Chiedere comprensione sembra troppo",
-      "categoriaPrincipale": "empatia",
+      "frase": "Mi attiri anche quando provo a negarlo.",
+      "sintesi": "Mi attiri anche quando provo a negarlo",
+      "categoriaPrincipale": "desiderio",
       "categorieSecondarie": [],
       "id": 53
     },
     {
-      "frase": "Vorrei dirti che quando mi ascolti senza interrompere mi sento al sicuro.",
-      "sintesi": "Mi sento al sicuro se ascolti",
-      "categoriaPrincipale": "empatia",
+      "frase": "Vorrei chiederti di restare ancora un po'.",
+      "sintesi": "Vorrei chiederti di restare ancora un po'",
+      "categoriaPrincipale": "desiderio",
       "categorieSecondarie": [],
       "id": 54
     },
     {
-      "frase": "Non riesco a dire che alcune ferite hanno bisogno di tempo, non di fretta.",
-      "sintesi": "Le ferite hanno bisogno di tempo",
-      "categoriaPrincipale": "empatia",
+      "frase": "Ti vorrei vicino, ma resto prudente.",
+      "sintesi": "Ti vorrei vicino, ma resto prudente",
+      "categoriaPrincipale": "desiderio",
       "categorieSecondarie": [],
       "id": 55
     },
     {
-      "frase": "Vorrei che tu capissi che sto provando, anche se sbaglio forma.",
-      "sintesi": "Sto provando",
-      "categoriaPrincipale": "empatia",
+      "frase": "Mi pesa desiderare qualcuno senza poterlo dire.",
+      "sintesi": "Mi pesa desiderare qualcuno senza poterlo dire",
+      "categoriaPrincipale": "desiderio",
       "categorieSecondarie": [],
       "id": 56
     },
     {
-      "frase": "Ho paura che il mio dolore sembri esagerato se lo racconto davvero.",
-      "sintesi": "Temo sembri esagerato",
-      "categoriaPrincipale": "empatia",
+      "frase": "Vorrei capire se questa cosa è reciproca.",
+      "sintesi": "Vorrei capire se questa cosa è reciproca",
+      "categoriaPrincipale": "desiderio",
       "categorieSecondarie": [],
       "id": 57
     },
     {
-      "frase": "Vorrei essere creduto senza dover dimostrare quanto male fa.",
-      "sintesi": "Essere creduto senza prove",
-      "categoriaPrincipale": "empatia",
+      "frase": "Mi trattengo perché ho paura del rifiuto.",
+      "sintesi": "Mi trattengo perché ho paura del rifiuto",
+      "categoriaPrincipale": "desiderio",
       "categorieSecondarie": [],
       "id": 58
     },
     {
-      "frase": "Non riesco a dire che mi serve presenza più che parole perfette.",
-      "sintesi": "Mi serve presenza",
-      "categoriaPrincipale": "empatia",
+      "frase": "Ti penso più spesso di quanto ammetta.",
+      "sintesi": "Ti penso più spesso di quanto ammetta",
+      "categoriaPrincipale": "desiderio",
       "categorieSecondarie": [],
       "id": 59
     },
     {
-      "frase": "Vorrei che qualcuno restasse accanto anche nei miei giorni difficili.",
-      "sintesi": "Resta nei giorni difficili",
-      "categoriaPrincipale": "empatia",
+      "frase": "Vorrei parlarti, ma temo di espormi troppo.",
+      "sintesi": "Vorrei parlarti, ma temo di espormi troppo",
+      "categoriaPrincipale": "desiderio",
       "categorieSecondarie": [],
       "id": 60
     },
     {
-      "id": 61,
-      "frase": "Non riesco a dirti che ti penso ancora, anche se faccio finta di niente.",
-      "sintesi": "Ti penso ancora",
-      "categoriaPrincipale": "malinconia",
-      "categorieSecondarie": [
-        "desiderio",
-        "tristezza"
-      ]
+      "frase": "Ti capisco anche quando non riesci a spiegarti.",
+      "sintesi": "Ti capisco anche quando non riesci a spiegarti",
+      "categoriaPrincipale": "empatia",
+      "categorieSecondarie": [],
+      "id": 61
     },
     {
-      "id": 62,
-      "frase": "Ho paura di dire che mi manca una persona che mi ha trattato male.",
-      "sintesi": "Mi manca chi mi ha trattato male",
-      "categoriaPrincipale": "malinconia",
-      "categorieSecondarie": [
-        "tristezza",
-        "desiderio"
-      ]
+      "frase": "Vedo che stai facendo fatica, anche sorridendo.",
+      "sintesi": "Vedo che stai facendo fatica, anche sorridendo",
+      "categoriaPrincipale": "empatia",
+      "categorieSecondarie": [],
+      "id": 62
     },
     {
-      "id": 63,
-      "frase": "Ho paura di dire che non credo più in quello in cui credevo prima.",
-      "sintesi": "Non credo più in ciò in cui credevo",
-      "categoriaPrincipale": "malinconia",
-      "categorieSecondarie": [
-        "paura",
-        "desiderio"
-      ]
+      "frase": "Non so risolvere tutto, ma posso ascoltarti.",
+      "sintesi": "Non so risolvere tutto, ma posso ascoltarti",
+      "categoriaPrincipale": "empatia",
+      "categorieSecondarie": [],
+      "id": 63
     },
     {
-      "id": 64,
-      "frase": "Non riesco a dire che certe amicizie le porto avanti solo per abitudine.",
-      "sintesi": "Porto avanti amicizie per abitudine",
-      "categoriaPrincipale": "malinconia",
-      "categorieSecondarie": [
-        "tristezza"
-      ]
+      "frase": "Mi accorgo quando qualcosa ti pesa dentro.",
+      "sintesi": "Mi accorgo quando qualcosa ti pesa dentro",
+      "categoriaPrincipale": "empatia",
+      "categorieSecondarie": [],
+      "id": 64
     },
     {
-      "id": 65,
-      "frase": "Vorrei dire che mi fa male vedere gli altri andare avanti.",
-      "sintesi": "Mi fa male vedere gli altri andare avanti",
-      "categoriaPrincipale": "malinconia",
-      "categorieSecondarie": [
-        "tristezza",
-        "rabbia"
-      ]
+      "frase": "Vorrei aiutarti senza farti sentire giudicato.",
+      "sintesi": "Vorrei aiutarti senza farti sentire giudicato",
+      "categoriaPrincipale": "empatia",
+      "categorieSecondarie": [],
+      "id": 65
     },
     {
-      "frase": "Vorrei dirti che certi luoghi mi mancano anche se non erano felici.",
-      "sintesi": "Mi mancano certi luoghi",
-      "categoriaPrincipale": "malinconia",
+      "frase": "Sento quando ti chiudi per proteggerti.",
+      "sintesi": "Sento quando ti chiudi per proteggerti",
+      "categoriaPrincipale": "empatia",
       "categorieSecondarie": [],
       "id": 66
     },
     {
-      "frase": "Non riesco a dire che penso ancora alla versione di me che ho lasciato indietro.",
-      "sintesi": "Penso al me lasciato indietro",
-      "categoriaPrincipale": "malinconia",
+      "frase": "Ti vedo stanco, anche se dici niente.",
+      "sintesi": "Ti vedo stanco, anche se dici niente",
+      "categoriaPrincipale": "empatia",
       "categorieSecondarie": [],
       "id": 67
     },
     {
-      "frase": "Vorrei tornare a un pomeriggio preciso solo per salutarlo meglio.",
-      "sintesi": "Vorrei salutare quel pomeriggio",
-      "categoriaPrincipale": "malinconia",
+      "frase": "Non devi spiegare tutto per essere compreso.",
+      "sintesi": "Non devi spiegare tutto per essere compreso",
+      "categoriaPrincipale": "empatia",
       "categorieSecondarie": [],
       "id": 68
     },
     {
-      "frase": "Ho paura di ammettere che mi manca qualcosa che non so nominare.",
-      "sintesi": "Mi manca qualcosa senza nome",
-      "categoriaPrincipale": "malinconia",
+      "frase": "Mi importa come stai, non solo cosa dici.",
+      "sintesi": "Mi importa come stai, non solo cosa dici",
+      "categoriaPrincipale": "empatia",
       "categorieSecondarie": [],
       "id": 69
     },
     {
-      "frase": "Vorrei dire che alcune canzoni mi riportano dove non posso più andare.",
-      "sintesi": "Le canzoni mi riportano indietro",
-      "categoriaPrincipale": "malinconia",
+      "frase": "Capisco il tuo silenzio più delle risposte.",
+      "sintesi": "Capisco il tuo silenzio più delle risposte",
+      "categoriaPrincipale": "empatia",
       "categorieSecondarie": [],
       "id": 70
     },
     {
-      "frase": "Non riesco a dire che continuo a cercare una casa che forse non esiste.",
-      "sintesi": "Cerco una casa che non esiste",
-      "categoriaPrincipale": "malinconia",
+      "frase": "Vorrei starti accanto senza aggiungere peso.",
+      "sintesi": "Vorrei starti accanto senza aggiungere peso",
+      "categoriaPrincipale": "empatia",
       "categorieSecondarie": [],
       "id": 71
     },
     {
-      "frase": "Vorrei confessare che mi manca chi ero prima di proteggermi.",
-      "sintesi": "Mi manca chi ero prima",
-      "categoriaPrincipale": "malinconia",
+      "frase": "So che certe giornate ti costano molto.",
+      "sintesi": "So che certe giornate ti costano molto",
+      "categoriaPrincipale": "empatia",
       "categorieSecondarie": [],
       "id": 72
     },
     {
-      "frase": "Ho paura che il passato sembri più bello solo perché è lontano.",
-      "sintesi": "Il passato sembra più bello",
-      "categoriaPrincipale": "malinconia",
+      "frase": "Ti ascolto anche quando cambi discorso.",
+      "sintesi": "Ti ascolto anche quando cambi discorso",
+      "categoriaPrincipale": "empatia",
       "categorieSecondarie": [],
       "id": 73
     },
     {
-      "frase": "Vorrei dire che certe assenze hanno ancora una voce.",
-      "sintesi": "Le assenze hanno una voce",
-      "categoriaPrincipale": "malinconia",
+      "frase": "Mi accorgo delle cose che non dici.",
+      "sintesi": "Mi accorgo delle cose che non dici",
+      "categoriaPrincipale": "empatia",
       "categorieSecondarie": [],
       "id": 74
     },
     {
-      "frase": "Non riesco a dire che conservo messaggi che dovrei cancellare.",
-      "sintesi": "Conservo messaggi vecchi",
-      "categoriaPrincipale": "malinconia",
+      "frase": "Vorrei farti sentire meno solo adesso.",
+      "sintesi": "Vorrei farti sentire meno solo adesso",
+      "categoriaPrincipale": "empatia",
       "categorieSecondarie": [],
       "id": 75
     },
     {
-      "id": 76,
-      "frase": "Non riesco a dirti che quando esci con loro mi sento messo da parte.",
-      "sintesi": "Quando esci con loro mi sento messo da parte",
-      "categoriaPrincipale": "tristezza",
-      "categorieSecondarie": [
-        "paura",
-        "desiderio"
-      ]
+      "frase": "Non minimizzo quello che stai attraversando.",
+      "sintesi": "Non minimizzo quello che stai attraversando",
+      "categoriaPrincipale": "empatia",
+      "categorieSecondarie": [],
+      "id": 76
     },
     {
-      "id": 77,
-      "frase": "Non ho il coraggio di dire che questa relazione non mi rende felice.",
-      "sintesi": "Questa relazione non mi rende felice",
-      "categoriaPrincipale": "tristezza",
-      "categorieSecondarie": [
-        "paura",
-        "desiderio"
-      ]
+      "frase": "Ti credo, anche quando fai fatica.",
+      "sintesi": "Ti credo, anche quando fai fatica",
+      "categoriaPrincipale": "empatia",
+      "categorieSecondarie": [],
+      "id": 77
     },
     {
-      "id": 78,
-      "frase": "Vorrei dire a mia madre che alcune sue parole mi fanno ancora male.",
-      "sintesi": "Le parole di mia madre mi fanno ancora male",
-      "categoriaPrincipale": "tristezza",
-      "categorieSecondarie": [
-        "rabbia",
-        "malinconia"
-      ]
+      "frase": "Riconosco il dolore dietro il tuo controllo.",
+      "sintesi": "Riconosco il dolore dietro il tuo controllo",
+      "categoriaPrincipale": "empatia",
+      "categorieSecondarie": [],
+      "id": 78
     },
     {
-      "id": 79,
-      "frase": "Ho paura di dire ai miei amici che spesso mi sento escluso.",
-      "sintesi": "Mi sento escluso dai miei amici",
-      "categoriaPrincipale": "tristezza",
-      "categorieSecondarie": [
-        "paura",
-        "malinconia"
-      ]
+      "frase": "Vorrei proteggerti, ma rispetto i tuoi spazi.",
+      "sintesi": "Vorrei proteggerti, ma rispetto i tuoi spazi",
+      "categoriaPrincipale": "empatia",
+      "categorieSecondarie": [],
+      "id": 79
     },
     {
-      "id": 80,
-      "frase": "Non ho il coraggio di dire che mi sento solo anche quando sono in compagnia.",
-      "sintesi": "Mi sento solo anche in compagnia",
-      "categoriaPrincipale": "tristezza",
-      "categorieSecondarie": [
-        "malinconia",
-        "paura"
-      ]
+      "frase": "Ti sto vicino nel modo che posso.",
+      "sintesi": "Ti sto vicino nel modo che posso",
+      "categoriaPrincipale": "empatia",
+      "categorieSecondarie": [],
+      "id": 80
     },
     {
-      "id": 81,
-      "frase": "Non riesco a dire che mi pesa rispondere sempre \"tutto bene\".",
-      "sintesi": "Mi pesa dire sempre \"tutto bene\"",
+      "frase": "Mi sento vuoto, anche se continuo normalmente.",
+      "sintesi": "Mi sento vuoto, anche se continuo normalmente",
       "categoriaPrincipale": "tristezza",
-      "categorieSecondarie": [
-        "rabbia",
-        "paura"
-      ]
+      "categorieSecondarie": [],
+      "id": 81
     },
     {
-      "id": 82,
-      "frase": "Vorrei dire al mio gruppo che non mi sento davvero parte di loro.",
-      "sintesi": "Non mi sento parte del gruppo",
+      "frase": "Fingo di stare bene per non spiegare.",
+      "sintesi": "Fingo di stare bene per non spiegare",
       "categoriaPrincipale": "tristezza",
-      "categorieSecondarie": [
-        "paura",
-        "malinconia"
-      ]
+      "categorieSecondarie": [],
+      "id": 82
     },
     {
-      "id": 83,
-      "frase": "Ho paura di dire che alcune feste mi fanno sentire ancora più solo.",
-      "sintesi": "Le feste mi fanno sentire più solo",
+      "frase": "Ci sono giorni in cui pesa tutto.",
+      "sintesi": "Ci sono giorni in cui pesa tutto",
       "categoriaPrincipale": "tristezza",
-      "categorieSecondarie": [
-        "malinconia",
-        "paura"
-      ]
+      "categorieSecondarie": [],
+      "id": 83
     },
     {
-      "id": 84,
-      "frase": "Ho paura di dire che certe battute mi feriscono davvero.",
-      "sintesi": "Certe battute mi feriscono",
+      "frase": "Mi manca qualcosa che non so nominare.",
+      "sintesi": "Mi manca qualcosa che non so nominare",
       "categoriaPrincipale": "tristezza",
-      "categorieSecondarie": [
-        "rabbia",
-        "paura"
-      ]
+      "categorieSecondarie": [],
+      "id": 84
     },
     {
-      "id": 85,
-      "frase": "Vorrei dire che quando scherzi su di me io rido, ma poi ci penso per giorni.",
-      "sintesi": "Rido alle battute su di me, poi ci penso per giorni",
+      "frase": "Sorrido, ma dentro non mi sento leggero.",
+      "sintesi": "Sorrido, ma dentro non mi sento leggero",
       "categoriaPrincipale": "tristezza",
-      "categorieSecondarie": [
-        "rabbia",
-        "paura"
-      ]
+      "categorieSecondarie": [],
+      "id": 85
     },
     {
-      "id": 86,
-      "frase": "Ho paura di dire che non mi piaccio quando mi guardo allo specchio.",
-      "sintesi": "Non mi piaccio allo specchio",
+      "frase": "Mi porto addosso cose che non racconto.",
+      "sintesi": "Mi porto addosso cose che non racconto",
       "categoriaPrincipale": "tristezza",
-      "categorieSecondarie": [
-        "paura"
-      ]
+      "categorieSecondarie": [],
+      "id": 86
     },
     {
-      "id": 87,
-      "frase": "Vorrei dire che non sono arrabbiato, sono deluso.",
-      "sintesi": "Non sono arrabbiato, sono deluso",
+      "frase": "Vorrei stare meglio, ma oggi non riesco.",
+      "sintesi": "Vorrei stare meglio, ma oggi non riesco",
       "categoriaPrincipale": "tristezza",
-      "categorieSecondarie": [
-        "rabbia"
-      ]
+      "categorieSecondarie": [],
+      "id": 87
     },
     {
-      "id": 88,
-      "frase": "Non riesco a dire che mi pesa essere sempre quello forte.",
-      "sintesi": "Mi pesa essere sempre quello forte",
+      "frase": "Alcune assenze mi fanno ancora molto male.",
+      "sintesi": "Alcune assenze mi fanno ancora molto male",
       "categoriaPrincipale": "tristezza",
-      "categorieSecondarie": [
-        "rabbia",
-        "desiderio"
-      ]
+      "categorieSecondarie": [],
+      "id": 88
     },
     {
-      "id": 89,
-      "frase": "Non riesco a dire che mi sento sostituibile.",
-      "sintesi": "Mi sento sostituibile",
+      "frase": "Mi sento lontano anche quando sono presente.",
+      "sintesi": "Mi sento lontano anche quando sono presente",
       "categoriaPrincipale": "tristezza",
-      "categorieSecondarie": [
-        "paura",
-        "malinconia"
-      ]
+      "categorieSecondarie": [],
+      "id": 89
     },
     {
-      "frase": "Vorrei dire che a volte mi sento invisibile anche mentre parlo.",
-      "sintesi": "Mi sento invisibile mentre parlo",
+      "frase": "Non so perché mi sento così spento.",
+      "sintesi": "Non so perché mi sento così spento",
       "categoriaPrincipale": "tristezza",
       "categorieSecondarie": [],
       "id": 90
     },
     {
-      "id": 91,
-      "frase": "Ho paura di dire ai miei genitori che non voglio fare l'università.",
-      "sintesi": "Non voglio fare l'università",
+      "frase": "Ho imparato a nascondere certe tristezze.",
+      "sintesi": "Ho imparato a nascondere certe tristezze",
+      "categoriaPrincipale": "tristezza",
+      "categorieSecondarie": [],
+      "id": 91
+    },
+    {
+      "frase": "Mi fa male ammettere quanto ci tengo.",
+      "sintesi": "Mi fa male ammettere quanto ci tengo",
+      "categoriaPrincipale": "tristezza",
+      "categorieSecondarie": [],
+      "id": 92
+    },
+    {
+      "frase": "A volte mi manca la mia vecchia serenità.",
+      "sintesi": "A volte mi manca la mia vecchia serenità",
+      "categoriaPrincipale": "tristezza",
+      "categorieSecondarie": [],
+      "id": 93
+    },
+    {
+      "frase": "Mi sento fragile, ma provo a funzionare.",
+      "sintesi": "Mi sento fragile, ma provo a funzionare",
+      "categoriaPrincipale": "tristezza",
+      "categorieSecondarie": [],
+      "id": 94
+    },
+    {
+      "frase": "Tengo dentro tutto per non disturbare nessuno.",
+      "sintesi": "Tengo dentro tutto per non disturbare nessuno",
+      "categoriaPrincipale": "tristezza",
+      "categorieSecondarie": [],
+      "id": 95
+    },
+    {
+      "frase": "Alcune parole non dette mi pesano ancora.",
+      "sintesi": "Alcune parole non dette mi pesano ancora",
+      "categoriaPrincipale": "tristezza",
+      "categorieSecondarie": [],
+      "id": 96
+    },
+    {
+      "frase": "Mi manca chi ero prima di soffrire.",
+      "sintesi": "Mi manca chi ero prima di soffrire",
+      "categoriaPrincipale": "tristezza",
+      "categorieSecondarie": [],
+      "id": 97
+    },
+    {
+      "frase": "Ci penso ancora, anche se sembra passato.",
+      "sintesi": "Ci penso ancora, anche se sembra passato",
+      "categoriaPrincipale": "tristezza",
+      "categorieSecondarie": [],
+      "id": 98
+    },
+    {
+      "frase": "Mi sento stanco di fingere forza.",
+      "sintesi": "Mi sento stanco di fingere forza",
+      "categoriaPrincipale": "tristezza",
+      "categorieSecondarie": [],
+      "id": 99
+    },
+    {
+      "frase": "Vorrei piangere senza dovermi giustificare.",
+      "sintesi": "Vorrei piangere senza dovermi giustificare",
+      "categoriaPrincipale": "tristezza",
+      "categorieSecondarie": [],
+      "id": 100
+    },
+    {
+      "frase": "Ho paura di dire troppo e perdere tutto.",
+      "sintesi": "Ho paura di dire troppo e perdere tutto",
       "categoriaPrincipale": "paura",
-      "categorieSecondarie": [
-        "desiderio",
-        "rabbia"
-      ]
+      "categorieSecondarie": [],
+      "id": 101
     },
     {
-      "id": 92,
-      "frase": "Non riesco a dire che ho bisogno di andare da uno psicologo.",
-      "sintesi": "Ho bisogno di andare da uno psicologo",
+      "frase": "Mi spaventa mostrarmi per come sono davvero.",
+      "sintesi": "Mi spaventa mostrarmi per come sono davvero",
       "categoriaPrincipale": "paura",
-      "categorieSecondarie": [
-        "tristezza",
-        "desiderio"
-      ]
+      "categorieSecondarie": [],
+      "id": 102
     },
     {
-      "id": 93,
-      "frase": "Vorrei dire a mio padre che non sono diventato la persona che lui voleva.",
-      "sintesi": "Non sono diventato chi mio padre voleva",
+      "frase": "Taccio perché temo di non essere capito.",
+      "sintesi": "Taccio perché temo di non essere capito",
       "categoriaPrincipale": "paura",
-      "categorieSecondarie": [
-        "tristezza",
-        "rabbia"
-      ]
+      "categorieSecondarie": [],
+      "id": 103
     },
     {
-      "id": 94,
-      "frase": "Ho paura di dire che non voglio più uscire solo per non restare da solo.",
-      "sintesi": "Esco solo per non restare da solo",
+      "frase": "Ho paura che la verità cambi tutto.",
+      "sintesi": "Ho paura che la verità cambi tutto",
       "categoriaPrincipale": "paura",
-      "categorieSecondarie": [
-        "tristezza",
-        "desiderio"
-      ]
+      "categorieSecondarie": [],
+      "id": 104
     },
     {
-      "id": 95,
-      "frase": "Non ho il coraggio di dire che non mi piace come mi tocchi.",
-      "sintesi": "Non mi piace come mi tocchi",
+      "frase": "Mi blocco quando qualcosa conta davvero.",
+      "sintesi": "Mi blocco quando qualcosa conta davvero",
       "categoriaPrincipale": "paura",
-      "categorieSecondarie": [
-        "rabbia",
-        "desiderio"
-      ]
+      "categorieSecondarie": [],
+      "id": 105
     },
     {
-      "id": 96,
-      "frase": "Ho paura di dire che non so cosa voglio fare della mia vita.",
-      "sintesi": "Non so cosa voglio fare della mia vita",
+      "frase": "Ho paura di essere rifiutato ancora.",
+      "sintesi": "Ho paura di essere rifiutato ancora",
       "categoriaPrincipale": "paura",
-      "categorieSecondarie": [
-        "tristezza",
-        "desiderio"
-      ]
+      "categorieSecondarie": [],
+      "id": 106
     },
     {
-      "id": 97,
-      "frase": "Non riesco a dire che mi vergogno della mia famiglia.",
-      "sintesi": "Mi vergogno della mia famiglia",
+      "frase": "Preferisco sembrare freddo che troppo vulnerabile.",
+      "sintesi": "Preferisco sembrare freddo che troppo",
       "categoriaPrincipale": "paura",
-      "categorieSecondarie": [
-        "tristezza",
-        "rabbia"
-      ]
+      "categorieSecondarie": [],
+      "id": 107
     },
     {
-      "id": 98,
-      "frase": "Vorrei dire che non ho abbastanza soldi per fare quello che fanno gli altri.",
-      "sintesi": "Non ho abbastanza soldi per stare al passo",
+      "frase": "Mi spaventa dipendere emotivamente da qualcuno.",
+      "sintesi": "Mi spaventa dipendere emotivamente da qualcuno",
       "categoriaPrincipale": "paura",
-      "categorieSecondarie": [
-        "tristezza",
-        "rabbia"
-      ]
+      "categorieSecondarie": [],
+      "id": 108
     },
     {
-      "id": 99,
-      "frase": "Ho paura di dire che ho mentito per sembrare più interessante.",
-      "sintesi": "Ho mentito per sembrare interessante",
+      "frase": "Ho paura che tu non provi lo stesso.",
+      "sintesi": "Ho paura che tu non provi lo stesso",
       "categoriaPrincipale": "paura",
-      "categorieSecondarie": [
-        "tristezza",
-        "desiderio"
-      ]
+      "categorieSecondarie": [],
+      "id": 109
     },
     {
-      "id": 100,
-      "frase": "Non riesco a dire che sono geloso, perché mi vergogno.",
-      "sintesi": "Sono geloso e me ne vergogno",
+      "frase": "Non parlo perché temo la tua risposta.",
+      "sintesi": "Non parlo perché temo la tua risposta",
       "categoriaPrincipale": "paura",
-      "categorieSecondarie": [
-        "desiderio",
-        "rabbia"
-      ]
+      "categorieSecondarie": [],
+      "id": 110
     },
     {
-      "id": 101,
-      "frase": "Non riesco a dire che mi sento stupido quando non capisco qualcosa.",
-      "sintesi": "Mi sento stupido quando non capisco",
+      "frase": "Ho paura di essere troppo per qualcuno.",
+      "sintesi": "Ho paura di essere troppo per qualcuno",
       "categoriaPrincipale": "paura",
-      "categorieSecondarie": [
-        "tristezza"
-      ]
-    },
-    {
-      "id": 102,
-      "frase": "Non riesco a dire che ho paura del futuro.",
-      "sintesi": "Ho paura del futuro",
-      "categoriaPrincipale": "paura",
-      "categorieSecondarie": [
-        "tristezza"
-      ]
-    },
-    {
-      "id": 103,
-      "frase": "Vorrei dire che mi sento in ritardo rispetto agli altri.",
-      "sintesi": "Mi sento in ritardo rispetto agli altri",
-      "categoriaPrincipale": "paura",
-      "categorieSecondarie": [
-        "tristezza",
-        "malinconia"
-      ]
-    },
-    {
-      "id": 104,
-      "frase": "Vorrei dire che mi sento giudicato ogni volta che torno a casa.",
-      "sintesi": "Mi sento giudicato quando torno a casa",
-      "categoriaPrincipale": "paura",
-      "categorieSecondarie": [
-        "rabbia",
-        "tristezza"
-      ]
-    },
-    {
-      "id": 105,
-      "frase": "Ho paura di dire che non mi sento al sicuro con certe persone.",
-      "sintesi": "Non mi sento al sicuro con certe persone",
-      "categoriaPrincipale": "paura",
-      "categorieSecondarie": [
-        "rabbia"
-      ]
-    },
-    {
-      "id": 106,
-      "frase": "Vorrei dire al mio capo che non ce la faccio più con questi orari.",
-      "sintesi": "Non ce la faccio più con questi orari",
-      "categoriaPrincipale": "rabbia",
-      "categorieSecondarie": [
-        "tristezza",
-        "paura"
-      ]
-    },
-    {
-      "id": 107,
-      "frase": "Vorrei dire che quel commento sul mio corpo mi ha rovinato la giornata.",
-      "sintesi": "Quel commento sul corpo mi ha ferito",
-      "categoriaPrincipale": "rabbia",
-      "categorieSecondarie": [
-        "tristezza",
-        "paura"
-      ]
-    },
-    {
-      "id": 108,
-      "frase": "Vorrei dire che mi dà fastidio quando mi interrompi mentre parlo.",
-      "sintesi": "Mi dà fastidio quando mi interrompi",
-      "categoriaPrincipale": "rabbia",
-      "categorieSecondarie": [
-        "tristezza"
-      ]
-    },
-    {
-      "id": 109,
-      "frase": "Vorrei dire che non voglio più essere sempre quello disponibile.",
-      "sintesi": "Non voglio essere sempre disponibile",
-      "categoriaPrincipale": "rabbia",
-      "categorieSecondarie": [
-        "desiderio"
-      ]
-    },
-    {
-      "id": 110,
-      "frase": "Vorrei dire che odio quando minimizzate quello che provo.",
-      "sintesi": "Odio quando minimizzate quello che provo",
-      "categoriaPrincipale": "rabbia",
-      "categorieSecondarie": [
-        "tristezza"
-      ]
-    },
-    {
-      "frase": "Vorrei dire che sono stanco di chiedere permesso per esistere.",
-      "sintesi": "Sono stanco di chiedere permesso",
-      "categoriaPrincipale": "rabbia",
       "categorieSecondarie": [],
       "id": 111
     },
     {
-      "frase": "Non riesco a dire che mi arrabbio quando fate finta di non capire.",
-      "sintesi": "Mi arrabbia la vostra indifferenza",
-      "categoriaPrincipale": "rabbia",
+      "frase": "Mi proteggo anche quando vorrei avvicinarmi.",
+      "sintesi": "Mi proteggo anche quando vorrei avvicinarmi",
+      "categoriaPrincipale": "paura",
       "categorieSecondarie": [],
       "id": 112
     },
     {
-      "frase": "Vorrei urlare che non sono difficile, sono solo arrivato al limite.",
-      "sintesi": "Sono arrivato al limite",
-      "categoriaPrincipale": "rabbia",
+      "frase": "Ho paura di sembrare bisognoso.",
+      "sintesi": "Ho paura di sembrare bisognoso",
+      "categoriaPrincipale": "paura",
       "categorieSecondarie": [],
       "id": 113
     },
     {
-      "frase": "Ho paura di sembrare cattivo se finalmente metto un confine.",
-      "sintesi": "Mettere un confine mi spaventa",
-      "categoriaPrincipale": "rabbia",
+      "frase": "Evito certi discorsi perché mi espongono troppo.",
+      "sintesi": "Evito certi discorsi perché mi espongono troppo",
+      "categoriaPrincipale": "paura",
       "categorieSecondarie": [],
       "id": 114
     },
     {
-      "frase": "Vorrei dire che mi pesa essere corretto anche quando sto soffrendo.",
-      "sintesi": "Mi pesa essere corretto",
-      "categoriaPrincipale": "rabbia",
+      "frase": "Mi spaventa perdere il controllo dei sentimenti.",
+      "sintesi": "Mi spaventa perdere il controllo dei sentimenti",
+      "categoriaPrincipale": "paura",
       "categorieSecondarie": [],
       "id": 115
     },
     {
-      "frase": "Non riesco a dire che odio dover sorridere per non creare problemi.",
-      "sintesi": "Odio sorridere per quieto vivere",
-      "categoriaPrincipale": "rabbia",
+      "frase": "Ho paura di non bastare mai davvero.",
+      "sintesi": "Ho paura di non bastare mai davvero",
+      "categoriaPrincipale": "paura",
       "categorieSecondarie": [],
       "id": 116
     },
     {
-      "frase": "Vorrei rispondere invece di ingoiare tutto e tremare dopo.",
-      "sintesi": "Vorrei rispondere",
-      "categoriaPrincipale": "rabbia",
+      "frase": "Resto in silenzio per non rovinare tutto.",
+      "sintesi": "Resto in silenzio per non rovinare tutto",
+      "categoriaPrincipale": "paura",
       "categorieSecondarie": [],
       "id": 117
     },
     {
-      "frase": "Ho paura di far rumore, ma il silenzio mi sta consumando.",
-      "sintesi": "Il silenzio mi consuma",
-      "categoriaPrincipale": "rabbia",
+      "frase": "Ho paura che avvicinarmi mi faccia male.",
+      "sintesi": "Ho paura che avvicinarmi mi faccia male",
+      "categoriaPrincipale": "paura",
       "categorieSecondarie": [],
       "id": 118
     },
     {
-      "frase": "Vorrei dire che non accetto più scuse dette senza cambiare nulla.",
-      "sintesi": "Non accetto scuse vuote",
-      "categoriaPrincipale": "rabbia",
+      "frase": "Mi nascondo dietro frasi semplici e sicure.",
+      "sintesi": "Mi nascondo dietro frasi semplici e sicure",
+      "categoriaPrincipale": "paura",
       "categorieSecondarie": [],
       "id": 119
     },
     {
-      "frase": "Non riesco a dire che mi sento usato quando mi cercate solo se servo.",
-      "sintesi": "Mi sento usato",
-      "categoriaPrincipale": "rabbia",
+      "frase": "Ho paura di volere qualcosa impossibile.",
+      "sintesi": "Ho paura di volere qualcosa impossibile",
+      "categoriaPrincipale": "paura",
       "categorieSecondarie": [],
       "id": 120
+    },
+    {
+      "frase": "Mi manca qualcosa, anche se non so cosa.",
+      "sintesi": "Mi manca qualcosa, anche se non so cosa",
+      "categoriaPrincipale": "malinconia",
+      "categorieSecondarie": [],
+      "id": 121
+    },
+    {
+      "frase": "Ripenso a momenti che non tornano più.",
+      "sintesi": "Ripenso a momenti che non tornano più",
+      "categoriaPrincipale": "malinconia",
+      "categorieSecondarie": [],
+      "id": 122
+    },
+    {
+      "frase": "Alcuni ricordi mi raggiungono senza avvisare.",
+      "sintesi": "Alcuni ricordi mi raggiungono senza avvisare",
+      "categoriaPrincipale": "malinconia",
+      "categorieSecondarie": [],
+      "id": 123
+    },
+    {
+      "frase": "Mi manca com'ero prima di cambiare.",
+      "sintesi": "Mi manca com'ero prima di cambiare",
+      "categoriaPrincipale": "malinconia",
+      "categorieSecondarie": [],
+      "id": 124
+    },
+    {
+      "frase": "Ogni tanto torno lì con la testa.",
+      "sintesi": "Ogni tanto torno lì con la testa",
+      "categoriaPrincipale": "malinconia",
+      "categorieSecondarie": [],
+      "id": 125
+    },
+    {
+      "frase": "Mi manca una versione di noi ormai lontana.",
+      "sintesi": "Mi manca una versione di noi ormai lontana",
+      "categoriaPrincipale": "malinconia",
+      "categorieSecondarie": [],
+      "id": 126
+    },
+    {
+      "frase": "Non voglio tornare indietro, però ci penso.",
+      "sintesi": "Non voglio tornare indietro, però ci penso",
+      "categoriaPrincipale": "malinconia",
+      "categorieSecondarie": [],
+      "id": 127
+    },
+    {
+      "frase": "Certi luoghi mi riportano a persone precise.",
+      "sintesi": "Certi luoghi mi riportano a persone precise",
+      "categoriaPrincipale": "malinconia",
+      "categorieSecondarie": [],
+      "id": 128
+    },
+    {
+      "frase": "Mi pesa sapere che alcune cose finiscono.",
+      "sintesi": "Mi pesa sapere che alcune cose finiscono",
+      "categoriaPrincipale": "malinconia",
+      "categorieSecondarie": [],
+      "id": 129
+    },
+    {
+      "frase": "Ho nostalgia di giorni che sembravano normali.",
+      "sintesi": "Ho nostalgia di giorni che sembravano normali",
+      "categoriaPrincipale": "malinconia",
+      "categorieSecondarie": [],
+      "id": 130
+    },
+    {
+      "frase": "Mi manca ciò che non ho capito allora.",
+      "sintesi": "Mi manca ciò che non ho capito allora",
+      "categoriaPrincipale": "malinconia",
+      "categorieSecondarie": [],
+      "id": 131
+    },
+    {
+      "frase": "Alcuni ricordi fanno bene e male insieme.",
+      "sintesi": "Alcuni ricordi fanno bene e male insieme",
+      "categoriaPrincipale": "malinconia",
+      "categorieSecondarie": [],
+      "id": 132
+    },
+    {
+      "frase": "Mi accorgo tardi di cosa ho perso.",
+      "sintesi": "Mi accorgo tardi di cosa ho perso",
+      "categoriaPrincipale": "malinconia",
+      "categorieSecondarie": [],
+      "id": 133
+    },
+    {
+      "frase": "Vorrei rivivere qualcosa senza cambiarne il finale.",
+      "sintesi": "Vorrei rivivere qualcosa senza cambiarne il",
+      "categoriaPrincipale": "malinconia",
+      "categorieSecondarie": [],
+      "id": 134
+    },
+    {
+      "frase": "Mi manca la leggerezza di certi periodi.",
+      "sintesi": "Mi manca la leggerezza di certi periodi",
+      "categoriaPrincipale": "malinconia",
+      "categorieSecondarie": [],
+      "id": 135
+    },
+    {
+      "frase": "Alcune mancanze arrivano nei momenti più semplici.",
+      "sintesi": "Alcune mancanze arrivano nei momenti più",
+      "categoriaPrincipale": "malinconia",
+      "categorieSecondarie": [],
+      "id": 136
+    },
+    {
+      "frase": "Mi ritrovo a pensare a chi eravamo.",
+      "sintesi": "Mi ritrovo a pensare a chi eravamo",
+      "categoriaPrincipale": "malinconia",
+      "categorieSecondarie": [],
+      "id": 137
+    },
+    {
+      "frase": "Non soffro più, ma qualcosa resta.",
+      "sintesi": "Non soffro più, ma qualcosa resta",
+      "categoriaPrincipale": "malinconia",
+      "categorieSecondarie": [],
+      "id": 138
+    },
+    {
+      "frase": "Mi manca una casa che non esiste.",
+      "sintesi": "Mi manca una casa che non esiste",
+      "categoriaPrincipale": "malinconia",
+      "categorieSecondarie": [],
+      "id": 139
+    },
+    {
+      "frase": "Certi addii continuano anche dopo anni.",
+      "sintesi": "Certi addii continuano anche dopo anni",
+      "categoriaPrincipale": "malinconia",
+      "categorieSecondarie": [],
+      "id": 140
+    },
+    {
+      "frase": "Mi arrabbio perché mi sono sentito ignorato.",
+      "sintesi": "Mi arrabbio perché mi sono sentito ignorato",
+      "categoriaPrincipale": "rabbia",
+      "categorieSecondarie": [],
+      "id": 141
+    },
+    {
+      "frase": "Non te l'ho detto, ma mi hai ferito.",
+      "sintesi": "Non te l'ho detto, ma mi hai ferito",
+      "categoriaPrincipale": "rabbia",
+      "categorieSecondarie": [],
+      "id": 142
+    },
+    {
+      "frase": "Mi pesa fingere che vada tutto bene.",
+      "sintesi": "Mi pesa fingere che vada tutto bene",
+      "categoriaPrincipale": "rabbia",
+      "categorieSecondarie": [],
+      "id": 143
+    },
+    {
+      "frase": "Avrei voluto più rispetto da parte tua.",
+      "sintesi": "Avrei voluto più rispetto da parte tua",
+      "categoriaPrincipale": "rabbia",
+      "categorieSecondarie": [],
+      "id": 144
+    },
+    {
+      "frase": "Mi fa rabbia aver sempre capito gli altri.",
+      "sintesi": "Mi fa rabbia aver sempre capito gli altri",
+      "categoriaPrincipale": "rabbia",
+      "categorieSecondarie": [],
+      "id": 145
+    },
+    {
+      "frase": "Ho taciuto troppo per paura del conflitto.",
+      "sintesi": "Ho taciuto troppo per paura del conflitto",
+      "categoriaPrincipale": "rabbia",
+      "categorieSecondarie": [],
+      "id": 146
+    },
+    {
+      "frase": "Mi arrabbio perché ho dato più del ricevuto.",
+      "sintesi": "Mi arrabbio perché ho dato più del ricevuto",
+      "categoriaPrincipale": "rabbia",
+      "categorieSecondarie": [],
+      "id": 147
+    },
+    {
+      "frase": "Non meritavo di essere trattato così.",
+      "sintesi": "Non meritavo di essere trattato così",
+      "categoriaPrincipale": "rabbia",
+      "categorieSecondarie": [],
+      "id": 148
+    },
+    {
+      "frase": "Mi fa male quanto ti ho giustificato.",
+      "sintesi": "Mi fa male quanto ti ho giustificato",
+      "categoriaPrincipale": "rabbia",
+      "categorieSecondarie": [],
+      "id": 149
+    },
+    {
+      "frase": "Vorrei dirti che mi hai deluso profondamente.",
+      "sintesi": "Vorrei dirti che mi hai deluso profondamente",
+      "categoriaPrincipale": "rabbia",
+      "categorieSecondarie": [],
+      "id": 150
+    },
+    {
+      "frase": "Mi arrabbio quando minimizzi quello che provo.",
+      "sintesi": "Mi arrabbio quando minimizzi quello che provo",
+      "categoriaPrincipale": "rabbia",
+      "categorieSecondarie": [],
+      "id": 151
+    },
+    {
+      "frase": "Ho ingoiato parole che meritavano spazio.",
+      "sintesi": "Ho ingoiato parole che meritavano spazio",
+      "categoriaPrincipale": "rabbia",
+      "categorieSecondarie": [],
+      "id": 152
+    },
+    {
+      "frase": "Mi pesa essere sempre quello che capisce.",
+      "sintesi": "Mi pesa essere sempre quello che capisce",
+      "categoriaPrincipale": "rabbia",
+      "categorieSecondarie": [],
+      "id": 153
+    },
+    {
+      "frase": "Avrei voluto che ti importasse di più.",
+      "sintesi": "Avrei voluto che ti importasse di più",
+      "categoriaPrincipale": "rabbia",
+      "categorieSecondarie": [],
+      "id": 154
+    },
+    {
+      "frase": "Mi fa rabbia essere rimasto in silenzio.",
+      "sintesi": "Mi fa rabbia essere rimasto in silenzio",
+      "categoriaPrincipale": "rabbia",
+      "categorieSecondarie": [],
+      "id": 155
+    },
+    {
+      "frase": "Non riesco più a fingere indifferenza.",
+      "sintesi": "Non riesco più a fingere indifferenza",
+      "categoriaPrincipale": "rabbia",
+      "categorieSecondarie": [],
+      "id": 156
+    },
+    {
+      "frase": "Mi arrabbio perché mi sono sentito usato.",
+      "sintesi": "Mi arrabbio perché mi sono sentito usato",
+      "categoriaPrincipale": "rabbia",
+      "categorieSecondarie": [],
+      "id": 157
+    },
+    {
+      "frase": "Ho sopportato cose che non dovevo sopportare.",
+      "sintesi": "Ho sopportato cose che non dovevo sopportare",
+      "categoriaPrincipale": "rabbia",
+      "categorieSecondarie": [],
+      "id": 158
+    },
+    {
+      "frase": "Mi ferisce che tu non te ne accorga.",
+      "sintesi": "Mi ferisce che tu non te ne accorga",
+      "categoriaPrincipale": "rabbia",
+      "categorieSecondarie": [],
+      "id": 159
+    },
+    {
+      "frase": "Vorrei smettere di proteggere chi mi ferisce.",
+      "sintesi": "Vorrei smettere di proteggere chi mi ferisce",
+      "categoriaPrincipale": "rabbia",
+      "categorieSecondarie": [],
+      "id": 160
     }
-  ],
-  "categorie": {
-    "rabbia": {
-      "descrizione": "Rabbia legata al sentirsi invasi, sminuiti, sfruttati o non rispettati.",
-      "esempi": [
-        "Mi dà fastidio quando mi interrompi mentre parlo.",
-        "Odio quando minimizzate quello che provo.",
-        "Non voglio più essere sempre quello disponibile."
-      ],
-      "pattern": "La rabbia non viene espressa direttamente. Spesso si trasforma in silenzio, adattamento o finta calma."
-    },
-    "tristezza": {
-      "descrizione": "Tristezza legata alla solitudine, al sentirsi feriti, invisibili o non abbastanza amati.",
-      "esempi": [
-        "Mi sento solo anche quando sono in compagnia.",
-        "Mi sento escluso dai miei amici.",
-        "Mi pesa rispondere sempre \"tutto bene\"."
-      ],
-      "pattern": "La persona sta male, ma nasconde il dolore per non disturbare, non sembrare fragile o non rompere l'equilibrio con gli altri."
-    },
-    "felicità": {
-      "descrizione": "La felicità è poco presente, ma può apparire come qualcosa che si ha paura di dichiarare.",
-      "esempi": [
-        "Vorrei dirti che quando sono con te sto bene.",
-        "Vorrei dire che questa cosa mi rende felice, anche se gli altri non la capiscono.",
-        "Vorrei ammettere che sto meglio lontano da alcune persone."
-      ],
-      "pattern": "La felicità viene trattenuta quando sembra rischiosa, giudicabile o troppo vulnerabile."
-    },
-    "desiderio": {
-      "descrizione": "Desiderio di attenzione, libertà, amore, spazio, cambiamento o riconoscimento.",
-      "esempi": [
-        "Vorrei cambiare città e ricominciare.",
-        "Vorrei ricevere più attenzioni.",
-        "Vorrei essere scelto per primo."
-      ],
-      "pattern": "La persona desidera qualcosa di semplice ma emotivamente rischioso: essere scelta, ascoltata, rispettata, amata o libera."
-    },
-    "malinconia": {
-      "descrizione": "Malinconia legata a ciò che resta: persone, luoghi, versioni passate di sé, relazioni finite o mai chiarite.",
-      "esempi": [
-        "Ti penso ancora.",
-        "Mi manca una persona che mi ha trattato male.",
-        "Porto avanti certe amicizie solo per abitudine."
-      ],
-      "pattern": "La persona è legata a qualcosa che non c'è più, o che esiste ancora ma ha perso significato."
-    },
-    "paura": {
-      "descrizione": "Paura di essere giudicati, rifiutati, abbandonati, deludere qualcuno o non essere capiti.",
-      "esempi": [
-        "Ho paura di dire ai miei genitori che non voglio fare l'università.",
-        "Ho paura di dire che ho fallito.",
-        "Non riesco a dire che non mi sento al sicuro."
-      ],
-      "pattern": "La persona non parla perché teme una conseguenza: perdere qualcuno, deludere qualcuno, sembrare debole o essere esclusa."
-    },
-    "gratitudine": {
-      "descrizione": "La gratitudine è quasi assente nelle frasi iniziali, ma può esistere come emozione trattenuta.",
-      "esempi": [
-        "Vorrei dirti grazie, ma ho paura di sembrare troppo emotivo.",
-        "Vorrei dirti che mi hai salvato in un momento in cui non lo sapevi.",
-        "Vorrei dirti che mi fai stare bene, ma temo di espormi troppo."
-      ],
-      "pattern": "Anche la gratitudine può fare paura, perché dire grazie significa ammettere che qualcuno è stato importante."
-    },
-    "empatia": {
-      "descrizione": "Empatia come bisogno di essere compresi, visti e accolti senza dover spiegare tutto.",
-      "esempi": [
-        "Ho bisogno che qualcuno mi chieda davvero come sto.",
-        "Non sono arrabbiato, sono deluso.",
-        "Vorrei essere abbracciato senza dover spiegare perché."
-      ],
-      "pattern": "La persona non chiede soluzioni, ma presenza. Vuole che qualcuno percepisca ciò che lei non riesce a dire."
-    }
-  },
-  "patternComuni": [
-    {
-      "titolo": "La paura del giudizio",
-      "descrizione": "Molte frasi nascono dal timore di essere visti in modo diverso.",
-      "temi": [
-        "non essere abbastanza",
-        "sembrare deboli",
-        "sembrare egoisti",
-        "sembrare strani",
-        "deludere la famiglia",
-        "deludere il gruppo"
-      ]
-    },
-    {
-      "titolo": "Il bisogno di essere scelti",
-      "descrizione": "Tante frasi parlano del desiderio di essere importanti per qualcuno.",
-      "esempi": [
-        "Vorrei essere scelto per primo.",
-        "Vorrei ricevere più attenzioni.",
-        "Controllo se hai visualizzato i miei messaggi."
-      ],
-      "interpretazione": "Il sesto senso può essere la capacità di sentire quando stiamo aspettando un segnale dagli altri."
-    },
-    {
-      "titolo": "Il corpo come luogo della paura",
-      "descrizione": "Alcune frasi parlano direttamente del corpo: commenti fisici, contatto, specchio, abbracci.",
-      "esempi": [
-        "Quel commento sul mio corpo mi ha rovinato la giornata.",
-        "Non mi piace come mi tocchi.",
-        "Non mi piaccio quando mi guardo allo specchio."
-      ],
-      "interpretazione": "Il non detto non è solo mentale: diventa fisico, resta addosso."
-    },
-    {
-      "titolo": "La famiglia come spazio difficile",
-      "descrizione": "La famiglia compare spesso come luogo dove è difficile essere sinceri.",
-      "esempi": [
-        "Non voglio fare l'università.",
-        "Non sono diventato la persona che mio padre voleva.",
-        "Mi vergogno della mia famiglia."
-      ],
-      "interpretazione": "La famiglia è associata ad aspettative, giudizio, senso di colpa e bisogno di approvazione."
-    },
-    {
-      "titolo": "L'amicizia e il gruppo come luoghi di esclusione",
-      "descrizione": "Molte frasi parlano di amici, feste, gruppi, uscite.",
-      "esempi": [
-        "Mi sento escluso.",
-        "Non mi sento parte del gruppo.",
-        "Le feste mi fanno sentire più solo."
-      ],
-      "interpretazione": "Anche nei contesti sociali, la persona può sentirsi invisibile."
-    },
-    {
-      "titolo": "Il contrasto tra fuori e dentro",
-      "descrizione": "Un pattern forte è la differenza tra ciò che si mostra e ciò che si sente.",
-      "esempi": [
-        "Rispondo sempre tutto bene.",
-        "Tutti pensano che vada tutto bene.",
-        "Rido, ma poi ci penso per giorni."
-      ],
-      "interpretazione": "Il sesto senso può diventare la capacità di percepire la frattura tra apparenza e verità emotiva."
-    },
-    {
-      "titolo": "Il desiderio di sparire o ricominciare",
-      "descrizione": "Alcune frasi non chiedono solo ascolto, ma trasformazione.",
-      "esempi": [
-        "Vorrei cambiare città.",
-        "Vorrei non essere sempre disponibile.",
-        "Vorrei dire che questa relazione non mi rende felice."
-      ],
-      "interpretazione": "Il non detto diventa desiderio di fuga, cambiamento o liberazione."
-    }
-  ],
-  "concept": {
-    "domanda": "Se il sesto senso fossero tutte le cose che non siamo capaci di dire ad alta voce per paura?",
-    "sintesi": "Le persone non tacciono perché non hanno nulla da dire. Tacciono perché dire la verità potrebbe cambiare il modo in cui vengono amate, viste o accettate.",
-    "interpretazione": "Il sesto senso è la capacità di percepire le frasi trattenute, quelle che il corpo sente prima che la voce riesca a pronunciarle."
-  }
+  ]
 }

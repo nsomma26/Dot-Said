@@ -7,7 +7,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parent.parent
 DATA = ROOT / 'data'
 
-for name in ('config', 'copy', 'emotions'):
+for name in ('config', 'copy', 'emotions', 'community-phrases', 'frasi-sesto-senso'):
     payload = json.loads((DATA / f'{name}.json').read_text(encoding='utf-8'))
     js = '\n'.join([
         '(function (w) {',
