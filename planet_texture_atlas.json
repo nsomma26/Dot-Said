@@ -1,0 +1,120 @@
+{
+  "atlas": "planet_texture_atlas.png",
+  "cell_size": 512,
+  "columns": 2,
+  "rows": 4,
+  "textures": [
+    {
+      "name": "planet_01",
+      "file": "planet_01.png",
+      "atlas_x": 0,
+      "atlas_y": 0,
+      "width": 512,
+      "height": 512,
+      "uv": {
+        "u0": 0.0,
+        "v0": 0.0,
+        "u1": 0.5,
+        "v1": 0.25
+      }
+    },
+    {
+      "name": "planet_02",
+      "file": "planet_02.png",
+      "atlas_x": 512,
+      "atlas_y": 0,
+      "width": 512,
+      "height": 512,
+      "uv": {
+        "u0": 0.5,
+        "v0": 0.0,
+        "u1": 1.0,
+        "v1": 0.25
+      }
+    },
+    {
+      "name": "planet_03",
+      "file": "planet_03.png",
+      "atlas_x": 0,
+      "atlas_y": 512,
+      "width": 512,
+      "height": 512,
+      "uv": {
+        "u0": 0.0,
+        "v0": 0.25,
+        "u1": 0.5,
+        "v1": 0.5
+      }
+    },
+    {
+      "name": "planet_04",
+      "file": "planet_04.png",
+      "atlas_x": 512,
+      "atlas_y": 512,
+      "width": 512,
+      "height": 512,
+      "uv": {
+        "u0": 0.5,
+        "v0": 0.25,
+        "u1": 1.0,
+        "v1": 0.5
+      }
+    },
+    {
+      "name": "planet_05",
+      "file": "planet_05.png",
+      "atlas_x": 0,
+      "atlas_y": 1024,
+      "width": 512,
+      "height": 512,
+      "uv": {
+        "u0": 0.0,
+        "v0": 0.5,
+        "u1": 0.5,
+        "v1": 0.75
+      }
+    },
+    {
+      "name": "planet_06",
+      "file": "planet_06.png",
+      "atlas_x": 512,
+      "atlas_y": 1024,
+      "width": 512,
+      "height": 512,
+      "uv": {
+        "u0": 0.5,
+        "v0": 0.5,
+        "u1": 1.0,
+        "v1": 0.75
+      }
+    },
+    {
+      "name": "planet_07",
+      "file": "planet_07.png",
+      "atlas_x": 0,
+      "atlas_y": 1536,
+      "width": 512,
+      "height": 512,
+      "uv": {
+        "u0": 0.0,
+        "v0": 0.75,
+        "u1": 0.5,
+        "v1": 1.0
+      }
+    },
+    {
+      "name": "planet_08",
+      "file": "planet_08.png",
+      "atlas_x": 512,
+      "atlas_y": 1536,
+      "width": 512,
+      "height": 512,
+      "uv": {
+        "u0": 0.5,
+        "v0": 0.75,
+        "u1": 1.0,
+        "v1": 1.0
+      }
+    }
+  ]
+}

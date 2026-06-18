@@ -1,0 +1,14 @@
+{
+  "scripts": {
+    "data": "py -3 scripts/generate-data-js.py",
+    "bundle": "py -3 scripts/bundle-python.py",
+    "build": "npm run data && npm run bundle"
+  },
+  "dependencies": {
+    "three": "^0.182.0"
+  },
+  "devDependencies": {
+    "esbuild": "^0.25.0",
+    "vite": "^7.3.1"
+  }
+}

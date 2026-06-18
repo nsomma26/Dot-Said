@@ -1,0 +1,15 @@
+{
+  "introText": "se il sesto senso fossero tutte le cose, che non siamo capaci di dire ad alta voce per paura?",
+  "promptQuestion": "cosa ti va di non dire ad alta voce?",
+  "promptPlaceholder": "massimo 10 parole",
+  "promptHint": "invio per disperdere nello spazio",
+  "audioGate": "clicca per entrare",
+  "constellationHintEditing": "clicca le stelle per collegarle · rotella per zoomare · doppio clic per avvicinarti",
+  "constellationHintDefault": "clicca le stelle per collegarle · rotella per zoomare",
+  "constellationHintComplete": "costellazione completa · la stai inviando nello spazio",
+  "constellationHintLaunched": "«{name}» nel non detto degli altri · rotella per zoomare · doppio clic per centrare · trascina con tasto destro per spostarti",
+  "wordCounter": "{clicked} / {total} stelle",
+  "downloadAriaLabel": "Scarica la tua costellazione",
+  "downloadTitle": "Scarica la tua costellazione",
+  "pageTitle": "3d-stars"
+}
