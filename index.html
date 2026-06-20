@@ -81,6 +81,26 @@
         audio {
             display: none;
         }
+        #intro-screen {
+            position: fixed;
+            inset: 0;
+            z-index: 20;
+            pointer-events: none;
+            opacity: 0;
+            filter: blur(14px);
+            transition: opacity 1.5s ease, filter 1.5s ease;
+        }
+        #intro-screen.visible {
+            opacity: 1;
+            filter: blur(0);
+        }
+        #intro-screen.fade-out {
+            opacity: 0;
+            filter: blur(14px);
+        }
+        #intro-screen.awaiting-continue {
+            pointer-events: auto;
+        }
         #intro-text {
             position: fixed;
             top: 50%;
@@ -92,18 +112,11 @@
             line-height: 1.4;
             text-align: center;
             white-space: nowrap;
-            opacity: 0;
-            filter: blur(14px);
-            transition: opacity 1.5s ease, filter 1.5s ease;
+            max-width: min(92vw, 920px);
             pointer-events: none;
         }
-        #intro-text.visible {
-            opacity: 1;
-            filter: blur(0);
-        }
-        #intro-text.fade-out {
-            opacity: 0;
-            filter: blur(14px);
+        #intro-continue-hint {
+            z-index: 21;
         }
         #prompt-screen {
             position: fixed;
@@ -172,17 +185,31 @@
             color: rgba(255, 255, 255, 0.62);
             filter: blur(2px);
         }
-        .word-star-label.editing-hint {
-            font-size: 14px;
-            opacity: 0.48;
-            color: rgba(232, 244, 255, 0.52);
-            filter: blur(3px);
-        }
-        .word-star-label.editing-hint.hover-reveal,
-        .word-star-label.editing-hint.selected {
-            opacity: 0.68;
-            color: rgba(255, 255, 255, 0.68);
-            filter: blur(2.5px);
+        .word-star-label.revealed {
+            opacity: 1;
+            color: #eef4ff;
+            filter: blur(0);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            height: 42px;
+            min-width: 42px;
+            width: auto;
+            padding: 0 14px;
+            border-radius: 999px;
+            background: radial-gradient(
+                ellipse at center,
+                rgba(10, 14, 26, 0.9) 0%,
+                rgba(10, 14, 26, 0.62) 52%,
+                rgba(10, 14, 26, 0.18) 78%,
+                rgba(10, 14, 26, 0) 100%
+            );
+            box-shadow: 0 0 14px rgba(12, 18, 32, 0.28);
+            letter-spacing: 0.02em;
+            line-height: 1;
+            white-space: nowrap;
+            transform: translate(0, 0);
         }
         .constellation-name {
             color: rgba(255, 255, 255, 0);
@@ -365,7 +392,7 @@
             left: 1.35rem;
             bottom: 3.1rem;
             transform: none;
-            z-index: 25;
+            z-index: 50;
             width: 1.75rem;
             height: 1.75rem;
             display: flex;
@@ -393,7 +420,7 @@
             left: 1.35rem;
             bottom: 1.35rem;
             transform: none;
-            z-index: 25;
+            z-index: 50;
             width: 1.75rem;
             height: 1.75rem;
             display: flex;
@@ -653,6 +680,10 @@
         body.planet-sky-mode #planet-sky-chart {
             touch-action: none;
         }
+        body.planet-sky-mode #download-constellation.visible,
+        body.planet-sky-mode #back-to-planets.visible {
+            pointer-events: auto;
+        }
     </style>
     <script type="importmap">
     {
@@ -665,7 +696,10 @@
 </head>
 <body>
     <div id="dot-cursor" aria-hidden="true"><span class="dot-cursor-glow"></span></div>
-    <p id="intro-text">se il sesto senso fossero tutte le cose, che non siamo capaci di dire ad alta voce per paura?</p>
+    <div id="intro-screen" aria-live="polite">
+        <p id="intro-text">se il sesto senso fossero tutte le cose, che non siamo capaci di dire ad alta voce per paura?</p>
+    </div>
+    <p id="intro-continue-hint" class="planet-choice-hint">clicca per continuare</p>
     <div id="prompt-screen">
         <p id="prompt-question">cosa ti va di non dire?</p>
         <input id="prompt-input" type="text" spellcheck="false" autocomplete="off" placeholder="">
@@ -699,13 +733,13 @@
             </a>
         </div>
     </aside>
+    <canvas id="planet-sky-chart" aria-hidden="true"></canvas>
     <button id="download-constellation" type="button" aria-label="Scarica la tua costellazione" title="Scarica la tua costellazione">
         <span class="dotnation-icon" aria-hidden="true">*</span>
     </button>
     <button id="back-to-planets" type="button" aria-label="Torna a tutti i pianeti" title="Torna a tutti i pianeti">
         <span class="dotnation-icon" aria-hidden="true">o</span>
     </button>
-    <canvas id="planet-sky-chart" aria-hidden="true"></canvas>
     <audio id="intro-audio" loop preload="auto" playsinline autoplay muted></audio>
     <script>
         (function () {
@@ -1947,12 +1981,12 @@
                 map: starTexture,
                 color: 0xe8f4ff,
                 transparent: true,
-                opacity: 0.78,
+                opacity: 0.56,
                 depthWrite: false,
                 depthTest: false,
                 blending: THREE.AdditiveBlending
             }));
-            beacon.scale.set(42, 42, 1);
+            beacon.scale.set(26, 26, 1);
             beacon.position.copy(position);
             beacon.renderOrder = 21;
             wordStarsGroup.add(beacon);
@@ -1978,7 +2012,7 @@
         function createLinkStarMesh(position, isWord = true) {
             const sprite = createConstellationStarSprite(position, {
                 bright: isWord,
-                size: isWord ? 5.2 : 3.6
+                size: isWord ? 4.1 : 3.6
             });
             linkStarsGroup.add(sprite);
             return sprite;
@@ -2121,7 +2155,7 @@
             depthWrite: false,
             blending: THREE.AdditiveBlending
         }));
-        hoverGlow.scale.set(14, 14, 1);
+        hoverGlow.scale.set(10, 10, 1);
         hoverGlow.visible = false;
         wordStarsGroup.add(hoverGlow);
 
@@ -2159,11 +2193,13 @@
         let planetaryTransition = null;
         let globeLockAnimation = null;
         let planetaryAssetsWarmed = false;
+        let planetaryGhostsReady = false;
         let flatConstellationView = false;
         const emotionPlanets = [];
         const planetHoverTargets = [];
         let hoveredPlanetLabel = null;
         let selectedPlanetId = null;
+        let userChosenEmotionPlanetId = null;
         let pointerDownPlanetId = null;
         let userPlanetSkyMode = false;
         let userPlanetSkyTransition = null;
@@ -2319,9 +2355,7 @@
         }
 
         function showPlanetChoicePrompt() {
-            const userPlanetId = getUserPlanetCategoryId();
-            const label = getPlanetLabelById(userPlanetId);
-            showPlanetChoiceHint(`scegli il pianeta che rappresenta la tua costellazione`);
+            showPlanetChoiceHint(`scegli il pianeta che rispecchia la tua emozione`);
         }
 
         function fraseMatchesPlanet(meta, planetId) {
@@ -2349,6 +2383,7 @@
         }
 
         function clearPlanetaryGhostConstellations() {
+            cancelPlanetaryGhostSpawn();
             planetaryGhostConstellations.forEach((meta) => {
                 meta.group.traverse((node) => {
                     node.geometry?.dispose();
@@ -2363,6 +2398,7 @@
                 meta.group.parent?.remove(meta.group);
             });
             planetaryGhostConstellations.length = 0;
+            planetaryGhostsReady = false;
             for (let i = ghostLines.length - 1; i >= 0; i -= 1) {
                 if (ghostLines[i].isPlanetary) ghostLines.splice(i, 1);
             }
@@ -2452,11 +2488,80 @@
         let planetSkyLastFrameTime = 0;
         let planetSkyZoom = 1;
         const SKY_CHART_SCALE = 1.05;
+        const SKY_ZOOM_MIN = 0.82;
+        const SKY_ZOOM_MAX = 2.85;
+        const SKY_WORDS_REVEAL_ZOOM = 1.22;
+        const SKY_WORDS_FULL_ZOOM = 1.68;
+
+        function getSkyWordsRevealAlpha() {
+            if (planetSkyZoom < SKY_WORDS_REVEAL_ZOOM) return 0;
+            return Math.min(1, (planetSkyZoom - SKY_WORDS_REVEAL_ZOOM) / (SKY_WORDS_FULL_ZOOM - SKY_WORDS_REVEAL_ZOOM));
+        }
+
+        const SKY_WORD_LABEL_FONT = '5px "Andale Mono", monospace';
+        const SKY_WORD_LABEL_PAD_X = 5;
+        const SKY_WORD_LABEL_MIN_W = 18;
+        const SKY_WORD_LABEL_H = 15;
+
+        function drawSkyChartWordLabel(ctx, x, y, word, alpha, options = {}) {
+            if (!word || alpha <= 0.02) return;
+
+            const offsetX = options.offsetX ?? 8;
+            const offsetY = options.offsetY ?? -9;
+            const labelX = x + offsetX;
+            const labelY = y + offsetY;
+            const text = String(word);
+
+            ctx.save();
+            ctx.globalAlpha = alpha;
+            ctx.font = SKY_WORD_LABEL_FONT;
+            const metrics = ctx.measureText(text);
+            const padX = SKY_WORD_LABEL_PAD_X;
+            const pillW = Math.max(SKY_WORD_LABEL_MIN_W, metrics.width + padX * 2);
+            const pillH = SKY_WORD_LABEL_H;
+            const pillX = labelX - pillW * 0.5;
+            const pillY = labelY - pillH * 0.5;
+
+            const grd = ctx.createRadialGradient(labelX, labelY, 0, labelX, labelY, pillW * 0.55);
+            grd.addColorStop(0, 'rgba(10, 14, 26, 0.88)');
+            grd.addColorStop(0.52, 'rgba(10, 14, 26, 0.58)');
+            grd.addColorStop(0.78, 'rgba(10, 14, 26, 0.16)');
+            grd.addColorStop(1, 'rgba(10, 14, 26, 0)');
+            ctx.fillStyle = grd;
+            if (typeof ctx.roundRect === 'function') {
+                ctx.beginPath();
+                ctx.roundRect(pillX, pillY, pillW, pillH, pillH * 0.5);
+                ctx.fill();
+            } else {
+                ctx.beginPath();
+                ctx.ellipse(labelX, labelY, pillW * 0.5, pillH * 0.5, 0, 0, Math.PI * 2);
+                ctx.fill();
+            }
+
+            ctx.fillStyle = '#eef4ff';
+            ctx.textAlign = 'center';
+            ctx.textBaseline = 'middle';
+            ctx.fillText(text, labelX, labelY);
+            ctx.restore();
+        }
+
+        function drawConstellationWordsOnSkyChart(ctx, points, words, alpha, seed = 0) {
+            if (alpha <= 0.02 || !words?.length || !points?.length) return;
+            points.forEach((point, index) => {
+                const word = words[index];
+                if (!word) return;
+                const sign = (index + seed) % 2 === 0 ? 1 : -1;
+                drawSkyChartWordLabel(ctx, point.x, point.y, word, alpha, {
+                    offsetX: 7 + (index % 3) * 2,
+                    offsetY: sign * (8 + (index % 2) * 2)
+                });
+            });
+        }
         const SKY_PAN_MAX_RATIO = 0.38;
         const SKY_ROTATION_X_RATIO = 0.58;
         const SKY_ROTATION_Y_RATIO = 0.52;
         const SKY_IDLE_DRIFT_X = 0.14;
-        const MIN_SKY_CONSTELLATIONS_PER_PLANET = 15;
+        const MIN_SKY_CONSTELLATIONS_PER_PLANET = 20;
         let planetSkyFrasiCount = 0;
         let planetSkyAnimationFrame = null;
         let planetSkyAnimationStart = 0;
@@ -2556,7 +2661,7 @@
                 event.preventDefault();
 
                 const prevZoom = planetSkyZoom;
-                const nextZoom = Math.max(0.82, Math.min(1.75, planetSkyZoom * (event.deltaY < 0 ? 1.08 : 0.92)));
+                const nextZoom = Math.max(SKY_ZOOM_MIN, Math.min(SKY_ZOOM_MAX, planetSkyZoom * (event.deltaY < 0 ? 1.08 : 0.92)));
                 if (Math.abs(nextZoom - prevZoom) < 0.001) return;
 
                 planetSkyZoom = nextZoom;
@@ -2667,29 +2772,30 @@
         }
 
         function estimateUserConstellationBounds(w, h) {
-            if (!wordStars.length) return null;
+            const nodes = getActiveUserConstellationNodes();
+            if (!nodes.length) return null;
 
             const centroid = getConstellationCentroid();
             let maxR = 1;
-            wordStars.forEach((ws) => {
-                maxR = Math.max(maxR, ws.target.distanceTo(centroid));
+            nodes.forEach((node) => {
+                maxR = Math.max(maxR, node.target.distanceTo(centroid));
             });
 
-            const desiredRadius = Math.min(w * 0.28, h * 0.22, 118);
-            const scale = (desiredRadius / maxR) * SKY_CHART_SCALE * 0.82;
+            const desiredRadius = Math.min(w * 0.3, h * 0.24, 132);
+            const scale = (desiredRadius / maxR) * SKY_CHART_SCALE * 0.92;
             let boundR = 0;
-            wordStars.forEach((ws) => {
+            nodes.forEach((node) => {
                 boundR = Math.max(
                     boundR,
                     Math.hypot(
-                        (ws.target.x - centroid.x) * scale,
-                        (ws.target.y - centroid.y) * scale * 0.82
+                        (node.target.x - centroid.x) * scale,
+                        (node.target.y - centroid.y) * scale * 0.82
                     )
                 );
             });
 
             return {
-                radius: boundR + 18,
+                radius: boundR + 22,
                 center: { x: w * 0.5, y: h * 0.46 },
                 scale,
                 centroid: centroid.clone()
@@ -2709,7 +2815,7 @@
             const clusterBase = Math.min(w, h) * 0.17 * (0.9 + countFactor * 0.22);
 
             let userLayout = null;
-            if (includeUser && wordStars.length) {
+            if (includeUser && getActiveUserConstellationNodes().length) {
                 const userBounds = estimateUserConstellationBounds(w, h);
                 if (userBounds) {
                     userLayout = {
@@ -2826,11 +2932,14 @@
             return { userLayout, phraseLayouts, w, h };
         }
 
+        function isUserHomeEmotionPlanet(planetId) {
+            return Boolean(userChosenEmotionPlanetId && planetId === userChosenEmotionPlanetId);
+        }
+
         function ensurePlanetSkyLayoutCache(planet, w, h) {
             const frasi = getFrasiForPlanetSky(planet.id);
-            const userPlanetId = getUserPlanetCategoryId();
-            const includeUser = Boolean(wordStars.length && planet.id === userPlanetId);
-            const cacheKey = `${planet.id}:${w}:${h}:${frasi.length}:${includeUser}:${planetSkyChartSeed}:${wordStars.length}`;
+            const includeUser = Boolean(getActiveUserConstellationNodes().length && isUserHomeEmotionPlanet(planet.id));
+            const cacheKey = `${planet.id}:${w}:${h}:${frasi.length}:${includeUser}:${planetSkyChartSeed}:${wordStars.length}:${userChosenEmotionPlanetId || ''}`;
 
             if (planetSkyLayoutCache?.key === cacheKey) return;
 
@@ -2984,17 +3093,18 @@
         }
 
         function getUserConstellationCanvasLayout(w, h) {
-            if (!wordStars.length) return null;
+            const nodes = getActiveUserConstellationNodes();
+            if (!nodes.length) return null;
 
             const cachedUser = planetSkyLayoutCache?.userLayout;
             const centroid = cachedUser?.centroid?.clone?.() || getConstellationCentroid();
             let maxR = 1;
-            wordStars.forEach((ws) => {
-                maxR = Math.max(maxR, ws.target.distanceTo(centroid));
+            nodes.forEach((node) => {
+                maxR = Math.max(maxR, node.target.distanceTo(centroid));
             });
 
-            const desiredRadius = Math.min(w * 0.28, h * 0.22, 118);
-            const scale = cachedUser?.scale || ((desiredRadius / maxR) * SKY_CHART_SCALE * 0.82);
+            const desiredRadius = Math.min(w * 0.3, h * 0.24, 132);
+            const scale = cachedUser?.scale || ((desiredRadius / maxR) * SKY_CHART_SCALE * 0.92);
             const baseCenter = cachedUser
                 ? { x: cachedUser.x, y: cachedUser.y }
                 : { x: w * 0.5, y: h * 0.46 };
@@ -3003,17 +3113,18 @@
             const cy = center.y;
             const starIndex = new Map();
 
-            const points = wordStars.map((ws, index) => {
-                starIndex.set(ws, index);
+            const points = nodes.map((node, index) => {
+                starIndex.set(node, index);
                 return {
-                    x: cx + (ws.target.x - centroid.x) * scale,
-                    y: cy + (ws.target.y - centroid.y) * scale * 0.82
+                    x: cx + (node.target.x - centroid.x) * scale,
+                    y: cy + (node.target.y - centroid.y) * scale * 0.82,
+                    word: node.word || ''
                 };
             });
 
             const edges = [];
             constellationLinks.forEach((link) => {
-                if (!link.isWordLink) return;
+                if (!link.isUserDrawnLink && !link.isWordLink) return;
                 const from = starIndex.get(link.nodeA);
                 const to = starIndex.get(link.nodeB);
                 if (from == null || to == null) return;
@@ -3040,13 +3151,13 @@
             centroid.x /= layout.points.length;
             centroid.y /= layout.points.length;
 
-            const halo = ctx.createRadialGradient(centroid.x, centroid.y, 0, centroid.x, centroid.y, 72);
-            halo.addColorStop(0, 'rgba(255, 248, 255, 0.16)');
-            halo.addColorStop(0.42, 'rgba(220, 200, 255, 0.07)');
+            const halo = ctx.createRadialGradient(centroid.x, centroid.y, 0, centroid.x, centroid.y, 96);
+            halo.addColorStop(0, 'rgba(255, 248, 255, 0.24)');
+            halo.addColorStop(0.42, 'rgba(220, 200, 255, 0.12)');
             halo.addColorStop(1, 'rgba(120, 130, 210, 0)');
             ctx.fillStyle = halo;
             ctx.beginPath();
-            ctx.arc(centroid.x, centroid.y, 72, 0, Math.PI * 2);
+            ctx.arc(centroid.x, centroid.y, 96, 0, Math.PI * 2);
             ctx.fill();
 
             ctx.lineCap = 'round';
@@ -3054,15 +3165,15 @@
                 const fromPoint = layout.points[from];
                 const toPoint = layout.points[to];
 
-                ctx.strokeStyle = 'rgba(255, 245, 255, 0.22)';
-                ctx.lineWidth = 2.4;
+                ctx.strokeStyle = 'rgba(255, 245, 255, 0.34)';
+                ctx.lineWidth = 3.4;
                 ctx.beginPath();
                 ctx.moveTo(fromPoint.x, fromPoint.y);
                 ctx.lineTo(toPoint.x, toPoint.y);
                 ctx.stroke();
 
-                ctx.strokeStyle = 'rgba(255, 252, 255, 0.82)';
-                ctx.lineWidth = 1.05;
+                ctx.strokeStyle = 'rgba(255, 252, 255, 0.92)';
+                ctx.lineWidth = 1.45;
                 ctx.beginPath();
                 ctx.moveTo(fromPoint.x, fromPoint.y);
                 ctx.lineTo(toPoint.x, toPoint.y);
@@ -3070,17 +3181,23 @@
             });
 
             layout.points.forEach((point, index) => {
-                const twinkle = 0.72 + Math.sin(time * 0.0016 + index * 1.83) * 0.28;
+                const twinkle = 0.78 + Math.sin(time * 0.0016 + index * 1.83) * 0.22;
                 drawCanvasConstellationNode(
                     ctx,
                     point.x,
                     point.y,
                     true,
-                    SKY_CHART_SCALE * 1.42,
+                    SKY_CHART_SCALE * 1.9,
                     'violet',
                     twinkle
                 );
             });
+
+            const wordAlpha = getSkyWordsRevealAlpha();
+            if (wordAlpha > 0) {
+                const words = layout.points.map((point) => point.word).filter(Boolean);
+                drawConstellationWordsOnSkyChart(ctx, layout.points, words, wordAlpha, 17);
+            }
         }
 
         function drawPhraseConstellationsOnSkyChart(ctx, w, h, frasi, time = performance.now()) {
@@ -3127,6 +3244,11 @@
                             twinkle
                         );
                     });
+
+                    const wordAlpha = getSkyWordsRevealAlpha();
+                    if (wordAlpha > 0) {
+                        drawConstellationWordsOnSkyChart(ctx, points, words, wordAlpha, seed);
+                    }
                 });
             });
         }
@@ -3177,9 +3299,11 @@
             ctx.translate(-w * 0.5, -h * 0.5);
             drawPlanetSkyBackground(ctx, w, h, time);
             drawPhraseConstellationsOnSkyChart(ctx, w, h, frasi, time);
-            const userPlanetId = getUserPlanetCategoryId();
-            if (wordStars.length && planet.id === userPlanetId) {
+            if (getActiveUserConstellationNodes().length && isUserHomeEmotionPlanet(planet.id)) {
                 drawUserConstellationOnSkyChart(ctx, w, h, time);
+            }
+            if (getSkyWordsRevealAlpha() > 0.72) {
+                hidePlanetChoiceHint();
             }
             ctx.restore();
         }
@@ -3227,6 +3351,7 @@
             wordStarsGroup.visible = false;
             renderer.domElement.style.opacity = '0';
             renderer.domElement.style.pointerEvents = 'none';
+            refreshPlanetSkyHud();
         }
 
         function hidePlanetSkyChart() {
@@ -3249,6 +3374,7 @@
             } else {
                 hidePlanetSkyChart();
             }
+            refreshPlanetSkyHud();
         }
 
         const PHRASE_STOP_WORDS = new Set([
@@ -3280,13 +3406,7 @@
             const source = meta.normalizedWords?.length
                 ? [...meta.normalizedWords]
                 : (meta.phrase || '').trim().split(/\s+/).map(cleanWord).filter(Boolean);
-            const trimmed = source.slice(getPhraseOpeningSkip(source));
-            const meaningful = trimmed.filter((word) => word.length > 2 && !PHRASE_STOP_WORDS.has(word));
-            const words = meaningful.length >= 3
-                ? meaningful
-                : trimmed.filter((word) => word.length > 1 && !PHRASE_STOP_WORDS.has(word));
-            const finalWords = words.length >= 3 ? words : source;
-            return finalWords.slice(0, 8);
+            return source.slice(0, 10);
         }
 
         function layoutPhraseWordConstellation(words, spread, seed) {
@@ -3360,8 +3480,9 @@
                 if (isPlanetary) {
                     dot.userData.isPlanetary = true;
                     dot.userData.isSkyGhost = false;
-                    dot.userData.targetOpacity = baseOpacity;
+                    dot.userData.targetOpacity = 0;
                     dot.userData.baseOpacity = baseOpacity;
+                    dot.material.opacity = 0;
                 }
                 if (isSkyGhost) {
                     dot.userData.isSkyGhost = true;
@@ -3371,7 +3492,7 @@
                 group.add(dot);
                 ghostLines.push({
                     material: dot.material,
-                    targetOpacity: isPlanetary ? baseOpacity : star.opacity,
+                    targetOpacity: isPlanetary ? 0 : star.opacity,
                     isPlanetary,
                     isSkyGhost,
                     meta
@@ -3391,7 +3512,7 @@
                 const key = from < to ? `${from}-${to}` : `${to}-${from}`;
                 if (seenEdges.has(key)) return;
                 seenEdges.add(key);
-                const lineOpacity = isSky ? 0.72 + rng() * 0.16 : (isPlanetary ? baseOpacity : 0.86 + rng() * 0.1);
+                const lineOpacity = isSky ? 0.72 + rng() * 0.16 : (isPlanetary ? 0 : 0.86 + rng() * 0.1);
                 const line = isSky
                     ? addNakedEyeLineSegment(group, points[from], points[to], lineOpacity, { isPlanetary, isSkyGhost, meta })
                     : addSkyChartDashedSegment(group, points[from], points[to], lineOpacity, { isPlanetary, isSkyGhost, meta });
@@ -3696,12 +3817,8 @@
             const { anchor } = getSkyLandingPose(planet);
             alignSkyGroupToCameraView(userSkyConstellationsGroup);
             attachStarfieldToSkyView();
-            if (planet.id === getUserPlanetCategoryId()) {
-                setUserConstellationVisibleInPlanetaryMode(false);
-            } else {
-                wordStarsGroup.visible = false;
-                setUserConstellationVisibleInPlanetaryMode(false);
-            }
+            wordStarsGroup.visible = false;
+            setUserConstellationVisibleInPlanetaryMode(false);
 
             planetaryGhostConstellations.forEach((meta) => {
                 meta.group.visible = false;
@@ -3748,7 +3865,7 @@
 
             applyPersistentStarfieldLook();
 
-            updateBackToPlanetsButtonVisibility();
+            refreshPlanetSkyHud();
         }
 
         function exitUserPlanetSkyView() {
@@ -3799,7 +3916,7 @@
 
             wordStarsGroup.visible = false;
             setUserConstellationVisibleInPlanetaryMode(false);
-            updateBackToPlanetsButtonVisibility();
+            refreshPlanetSkyHud();
         }
 
         function updateUserPlanetSkyTransition(now) {
@@ -3859,7 +3976,7 @@
                 controls.enabled = true;
                 userPlanetSkyTransition = null;
                 updatePlanetSkyPresentation(tr.planet);
-                updateBackToPlanetsButtonVisibility();
+                refreshPlanetSkyHud();
             }
         }
 
@@ -3891,6 +4008,7 @@
             });
 
             planetGroup.add(group);
+            group.visible = false;
 
             const ghostMeta = {
                 group,
@@ -3903,10 +4021,63 @@
             return ghostMeta;
         }
 
-        function spawnPlanetaryCommunityConstellations() {
+        let planetaryGhostSpawnQueue = null;
+        const planetaryGhostSpawnCallbacks = [];
+
+        function cancelPlanetaryGhostSpawn() {
+            if (!planetaryGhostSpawnQueue) return;
+            if (typeof cancelIdleCallback === 'function') {
+                cancelIdleCallback(planetaryGhostSpawnQueue);
+            } else {
+                cancelAnimationFrame(planetaryGhostSpawnQueue);
+            }
+            planetaryGhostSpawnQueue = null;
+        }
+
+        function flushPlanetaryGhostSpawnCallbacks() {
+            const callbacks = planetaryGhostSpawnCallbacks.splice(0);
+            callbacks.forEach((callback) => callback?.());
+        }
+
+        function ensurePlanetaryCommunityConstellations(onComplete = null) {
+            if (onComplete) planetaryGhostSpawnCallbacks.push(onComplete);
+            if (planetaryGhostsReady) {
+                flushPlanetaryGhostSpawnCallbacks();
+                return;
+            }
+            if (planetaryGhostSpawnQueue) return;
+            if (emotionPlanets.length < EMOTION_PLANET_DEFS.length) {
+                ensurePlanetsSpawned(() => {
+                    if (!planetaryGhostsReady && !planetaryGhostSpawnQueue) {
+                        spawnPlanetaryCommunityConstellations();
+                    }
+                });
+                return;
+            }
+            spawnPlanetaryCommunityConstellations();
+        }
+
+        function spawnPlanetaryCommunityConstellations(options = {}) {
+            if (options.force) {
+                cancelPlanetaryGhostSpawn();
+                planetaryGhostsReady = false;
+            } else if (planetaryGhostsReady) {
+                options.onComplete?.();
+                return;
+            }
+            if (planetaryGhostSpawnQueue) {
+                if (options.onComplete) planetaryGhostSpawnCallbacks.push(options.onComplete);
+                return;
+            }
+
             clearPlanetaryGhostConstellations();
             const frasi = getFrasiSestoSenso();
-            if (!frasi.length || !emotionPlanets.length) return;
+            if (!frasi.length || !emotionPlanets.length) {
+                planetaryGhostsReady = true;
+                flushPlanetaryGhostSpawnCallbacks();
+                options.onComplete?.();
+                return;
+            }
 
             const byPlanet = {};
             EMOTION_PLANET_DEFS.forEach((def) => {
@@ -3919,25 +4090,79 @@
                 byPlanet[meta.planetId].push(meta);
             });
 
+            const spawnList = [];
             emotionPlanets.forEach((planet) => {
                 const metas = byPlanet[planet.id] || [];
                 metas.forEach((meta, index) => {
-                    const offset = getConstellationLocalOffset(index, metas.length, meta.phraseId);
+                    spawnList.push({ planet, meta, index, total: metas.length });
+                });
+            });
+
+            let cursor = 0;
+            const spawnChunk = (deadline) => {
+                const timeBudget = deadline?.timeRemaining ? deadline.timeRemaining() : 14;
+                const maxItems = timeBudget > 10 ? 28 : timeBudget > 4 ? 14 : 6;
+
+                let spawned = 0;
+                for (; cursor < spawnList.length && spawned < maxItems; cursor += 1, spawned += 1) {
+                    const { planet, meta, index, total } = spawnList[cursor];
+                    const offset = getConstellationLocalOffset(index, total, meta.phraseId);
                     spawnGhostConstellationNearPlanet(planet.group, offset, meta, {
                         baseOpacity: 0.9,
                         spread: 5 + (meta.phraseId % 5) * 0.45
                     });
+                }
+
+                if (cursor < spawnList.length) {
+                    if (typeof requestIdleCallback === 'function') {
+                        planetaryGhostSpawnQueue = requestIdleCallback(spawnChunk, { timeout: 90 });
+                    } else {
+                        planetaryGhostSpawnQueue = requestAnimationFrame(() => spawnChunk());
+                    }
+                    return;
+                }
+
+                planetaryGhostSpawnQueue = null;
+                planetaryGhostsReady = true;
+                flushPlanetaryGhostSpawnCallbacks();
+                options.onComplete?.();
+                hideAllPlanetaryGhostConstellations();
+            };
+
+            if (typeof requestIdleCallback === 'function') {
+                planetaryGhostSpawnQueue = requestIdleCallback(spawnChunk, { timeout: 120 });
+            } else {
+                planetaryGhostSpawnQueue = requestAnimationFrame(() => spawnChunk());
+            }
+        }
+
+        function shouldShowUserConstellationInPlanetaryMode() {
+            return false;
+        }
+
+        function hideAllPlanetaryGhostConstellations() {
+            planetaryGhostConstellations.forEach((meta) => {
+                meta.group.visible = false;
+                meta.group.traverse((child) => {
+                    if (child.isSprite && child.userData.isPlanetary) {
+                        child.userData.targetOpacity = 0;
+                    }
+                    if (child.isLine && child.userData.isPlanetary && child.material) {
+                        child.userData.targetOpacity = 0;
+                    }
                 });
             });
-
-            updatePlanetaryGhostVisibility(null);
+            ghostLines.forEach((entry) => {
+                if (entry.isPlanetary) entry.targetOpacity = 0;
+            });
         }
 
         function applyPlanetaryCleanView() {
+            const showUserConstellation = shouldShowUserConstellationInPlanetaryMode();
             setPlanetarySystemVisible(true);
             wordStarsGroup.visible = false;
-            linesGroup.visible = false;
-            linkStarsGroup.visible = false;
+            linesGroup.visible = showUserConstellation;
+            linkStarsGroup.visible = showUserConstellation;
             ghostConstellationsGroup.visible = false;
             resonancePointsGroup.visible = false;
             if (!userPlanetSkyMode && !userPlanetSkyTransition) {
@@ -3946,10 +4171,11 @@
             planetaryGhostConstellations.forEach((meta) => {
                 meta.group.visible = false;
             });
-            setUserConstellationVisibleInPlanetaryMode(false);
+            hideAllPlanetaryGhostConstellations();
+            setUserConstellationVisibleInPlanetaryMode(showUserConstellation);
             if (userNameLabel?.element) {
-                userNameLabel.element.classList.remove('visible');
-                userNameLabel.element.style.visibility = 'hidden';
+                userNameLabel.element.classList.toggle('visible', showUserConstellation);
+                userNameLabel.element.style.visibility = showUserConstellation ? '' : 'hidden';
             }
         }
 
@@ -3960,31 +4186,20 @@
             });
         }
 
-        function updatePlanetaryGhostVisibility(activePlanetId) {
+        function updatePlanetaryGhostVisibility(activePlanetId, options = {}) {
             if (!planetaryMode) return;
-            if (userPlanetSkyMode) return;
+            if (userPlanetSkyMode) {
+                hideAllPlanetaryGhostConstellations();
+                return;
+            }
+            if (!options.forDownloadSnapshot) {
+                hideAllPlanetaryGhostConstellations();
+                return;
+            }
 
-            const effectivePlanetId = selectedPlanetId || activePlanetId;
-
-            const hideAll = () => {
-                planetaryGhostConstellations.forEach((meta) => {
-                    meta.group.visible = false;
-                    meta.group.traverse((child) => {
-                        if (child.isSprite && child.userData.isPlanetary) {
-                            child.userData.targetOpacity = 0;
-                        }
-                        if (child.isLine && child.userData.isPlanetary && child.material) {
-                            child.userData.targetOpacity = 0;
-                        }
-                    });
-                });
-                ghostLines.forEach((entry) => {
-                    if (entry.isPlanetary) entry.targetOpacity = 0;
-                });
-            };
-
+            const effectivePlanetId = activePlanetId || null;
             if (!effectivePlanetId) {
-                hideAll();
+                hideAllPlanetaryGhostConstellations();
                 return;
             }
 
@@ -4015,7 +4230,11 @@
                 if (node.linkStarMesh) node.linkStarMesh.visible = visible;
             });
             constellationLinks.forEach((link) => {
-                if (link.isUserDrawnLink || link.isWordLink) link.mesh.visible = visible;
+                if (!link.isUserDrawnLink && !link.isWordLink) return;
+                link.mesh.visible = visible;
+                if (visible && link.mesh.material.opacity < 0.05) {
+                    link.mesh.material.opacity = link.isWordLink ? 0.42 : 0.28;
+                }
             });
             if (userNameLabel?.element) {
                 userNameLabel.element.classList.toggle('visible', visible);
@@ -4023,14 +4242,28 @@
             }
         }
 
+        function refreshPlanetSkyHud() {
+            updateDownloadButtonVisibility();
+            updateBackToPlanetsButtonVisibility();
+        }
+
+        function canDownloadChosenPlanetSkyView() {
+            return planetaryMode
+                && userPlanetSkyMode
+                && !userPlanetSkyTransition
+                && userChosenEmotionPlanetId
+                && planetSkyActiveId === userChosenEmotionPlanetId;
+        }
+
         function updateDownloadButtonVisibility() {
             const button = document.getElementById('download-constellation');
             if (!button) return;
-            const isUserPlanet = selectedPlanetId === getUserPlanetCategoryId();
-            if (planetaryMode && isUserPlanet && (userPlanetSkyMode || userPlanetSkyTransition)) {
+            if (canDownloadChosenPlanetSkyView()) {
+                const planetLabel = getPlanetLabelById(userChosenEmotionPlanetId);
+                button.style.visibility = '';
                 button.classList.add('visible');
-                button.title = 'Scarica la vista dal tuo pianeta';
-                button.setAttribute('aria-label', 'Scarica la vista dal tuo pianeta');
+                button.title = `Scarica la vista da ${planetLabel}`;
+                button.setAttribute('aria-label', `Scarica la vista da ${planetLabel}`);
             } else if (planetaryMode) {
                 button.classList.remove('visible');
             }
@@ -4040,6 +4273,7 @@
             const button = document.getElementById('back-to-planets');
             if (!button) return;
             if (planetaryMode && (userPlanetSkyMode || userPlanetSkyTransition)) {
+                button.style.visibility = '';
                 button.classList.add('visible');
             } else {
                 button.classList.remove('visible');
@@ -4055,8 +4289,7 @@
             applyPersistentStarfieldLook();
             updatePlanetaryGhostVisibility(null);
             resetPlanetaryCamera();
-            updateDownloadButtonVisibility();
-            updateBackToPlanetsButtonVisibility();
+            refreshPlanetSkyHud();
             emotionPlanets.forEach((planet) => {
                 planet.labelEl.classList.remove('visible');
             });
@@ -4080,44 +4313,39 @@
             camera.lookAt(controls.target);
         }
 
-        function selectPlanet(planetId) {
-            if (!planetId) return;
+        function landOnSelectedPlanet(planetId) {
+            const planet = emotionPlanets.find((entry) => entry.id === planetId);
+            if (!planet) return;
 
-            const userPlanetId = getUserPlanetCategoryId();
-            const planetIsUserEmotion = planetId === userPlanetId;
-
-            if (planetIsUserEmotion) {
-                hidePlanetChoiceHint();
-            } else {
-                showPlanetChoiceHint(`qui la tua costellazione è invisibile, perchè questo pianeta non ti appartiene`, true);
+            if (!userChosenEmotionPlanetId) {
+                userChosenEmotionPlanetId = planetId;
             }
 
+            showPlanetChoiceHint('avvicina lo zoom per leggere le parole nelle costellazioni');
+            beginUserPlanetSkyView(planet);
+            applyPlanetaryCleanView();
+            refreshPlanetSkyHud();
+        }
+
+        function selectPlanet(planetId) {
+            if (!planetId) return;
+            if (userPlanetSkyMode || userPlanetSkyTransition) return;
+
             if (selectedPlanetId === planetId) {
-                selectedPlanetId = null;
-                exitUserPlanetSkyView();
-                applyPlanetaryCleanView();
-                updatePlanetaryGhostVisibility(null);
-                resetPlanetaryCamera();
-                updateDownloadButtonVisibility();
-                updateBackToPlanetsButtonVisibility();
-                emotionPlanets.forEach((planet) => {
-                    planet.labelEl.classList.remove('visible');
-                });
+                landOnSelectedPlanet(planetId);
                 return;
             }
 
             exitUserPlanetSkyView();
             selectedPlanetId = planetId;
+            showPlanetChoiceHint('clicca di nuovo sul pianeta per guardare il suo cielo');
 
-            const planet = emotionPlanets.find((entry) => entry.id === planetId);
-            if (planet) beginUserPlanetSkyView(planet);
             applyPlanetaryCleanView();
-
-            updateDownloadButtonVisibility();
-            updateBackToPlanetsButtonVisibility();
             emotionPlanets.forEach((planet) => {
                 planet.labelEl.classList.toggle('visible', planet.id === planetId);
             });
+            updateDownloadButtonVisibility();
+            updateBackToPlanetsButtonVisibility();
         }
 
         function pickPlanetIdFromPointer(event) {
@@ -4435,13 +4663,14 @@
 
         function getUserConstellationMeta() {
             const normalizedWords = wordStars.map((ws) => cleanWord(ws.word)).filter(Boolean);
+            const emotionName = deriveEmotionName(wordStars.map((ws) => ws.word));
             return {
                 id: 'user',
                 isUser: true,
-                emotionName: userConstellationName,
+                emotionName,
                 normalizedWords,
                 sentiment: detectPhraseSentiment(normalizedWords),
-                sentimentTags: getEmotionSentimentTags(userConstellationName)
+                sentimentTags: getEmotionSentimentTags(emotionName)
             };
         }
 
@@ -4647,6 +4876,7 @@
             userLaunchCenter = new THREE.Vector3(0, 0, 0);
             warmPlanetaryAssets();
             setPlanetarySystemVisible(false);
+            ensurePlanetsSpawned(() => ensurePlanetaryCommunityConstellations());
 
             const activeNodes = getActiveUserConstellationNodes();
             const bounds = getUserConstellationBounds();
@@ -4834,11 +5064,7 @@
                 });
                 flatConstellationView = true;
                 updateConstellationLinks();
-                constellationLinks.forEach((link) => {
-                    if (link.isUserDrawnLink || link.isWordLink) {
-                        link.mesh.material.opacity = 0;
-                    }
-                });
+                restorePlanetaryUserConstellationVisuals();
                 userLaunchCenter.set(0, 0, 0);
                 if (userConstellationHoverArea) {
                     userConstellationHoverArea.position.set(0, 0, 0);
@@ -5102,8 +5328,15 @@
             };
         }
 
+        const planetTextureCache = new Map();
+        const cachedPlanetTextures = new Set();
+
         function createProceduralPlanetTexture(type) {
-            const size = 512;
+            if (planetTextureCache.has(type)) {
+                return planetTextureCache.get(type);
+            }
+
+            const size = 256;
             const canvas = document.createElement('canvas');
             canvas.width = size;
             canvas.height = size;
@@ -5139,7 +5372,10 @@
             ctx.putImageData(imageData, 0, 0);
             const texture = new THREE.CanvasTexture(canvas);
             texture.userData = { planetTextureLayout: 'equirectangular' };
-            return preparePlanetTexture(texture);
+            const prepared = preparePlanetTexture(texture);
+            planetTextureCache.set(type, prepared);
+            cachedPlanetTextures.add(prepared);
+            return prepared;
         }
 
         function smoothstep(edge0, edge1, x) {
@@ -5295,6 +5531,17 @@
                     const pulse = 1 + Math.sin(now * 0.001 + planet.orbitPhase) * 0.015;
                     planet.mesh.scale.setScalar(pulse);
                 }
+                if (planet.selectionGlow) {
+                    const isSelected = selectedPlanetId === planet.id
+                        && !userPlanetSkyMode
+                        && !userPlanetSkyTransition;
+                    const glowPulse = isSelected
+                        ? 0.42 + Math.sin(now * 0.0025 + planet.orbitPhase) * 0.14
+                        : 0;
+                    planet.selectionGlow.material.opacity = glowPulse;
+                    const glowSize = planet.radius * (3.2 + (isSelected ? Math.sin(now * 0.003 + planet.orbitPhase) * 0.35 : 0));
+                    planet.selectionGlow.scale.set(glowSize, glowSize, 1);
+                }
                 if (!(userPlanetSkyMode && planet.id === activeSkyPlanetId)) {
                     planet.trails?.forEach((trail) => {
                         if (trail.userData.baseOpacity == null) return;
@@ -5316,20 +5563,15 @@
             setPlanetarySystemVisible(shouldShowPlanets);
         }
 
-        function ensurePlanetsSpawned() {
-            if (emotionPlanets.length < EMOTION_PLANET_DEFS.length) {
-                spawnEmotionPlanetsChunked();
-            }
-        }
-
         function warmPlanetaryAssets() {
             if (planetaryAssetsWarmed || emotionPlanets.length >= EMOTION_PLANET_DEFS.length) return;
+            if (constellationMode && !userConstellationLaunched) return;
             planetaryAssetsWarmed = true;
-            const warm = () => ensurePlanetsSpawned();
+            const warm = () => ensurePlanetsSpawned(() => ensurePlanetaryCommunityConstellations());
             if (typeof requestIdleCallback === 'function') {
-                requestIdleCallback(warm, { timeout: 800 });
+                requestIdleCallback(warm, { timeout: 4000 });
             } else {
-                setTimeout(warm, 40);
+                setTimeout(warm, 1200);
             }
         }
 
@@ -5361,6 +5603,19 @@
             const spinGroup = new THREE.Group();
             const mesh = createPlanetMesh(texture, radius);
             spinGroup.add(mesh);
+
+            const selectionGlow = new THREE.Sprite(new THREE.SpriteMaterial({
+                map: starTexture,
+                color: def.trailColor || 0xd8ecff,
+                transparent: true,
+                opacity: 0,
+                depthWrite: false,
+                blending: THREE.AdditiveBlending
+            }));
+            selectionGlow.scale.set(radius * 3.4, radius * 3.4, 1);
+            selectionGlow.renderOrder = 148;
+            spinGroup.add(selectionGlow);
+
             group.add(spinGroup);
 
             const hitArea = new THREE.Mesh(
@@ -5386,6 +5641,7 @@
                 group,
                 spinGroup,
                 mesh,
+                selectionGlow,
                 hitArea,
                 label,
                 labelEl,
@@ -5403,9 +5659,17 @@
 
         let planetarySpawnQueue = null;
 
+        const planetarySpawnCallbacks = [];
+
+        function flushPlanetarySpawnCallbacks() {
+            const callbacks = planetarySpawnCallbacks.splice(0);
+            callbacks.forEach((callback) => callback?.());
+        }
+
         function spawnEmotionPlanetsChunked(onComplete = null) {
+            if (onComplete) planetarySpawnCallbacks.push(onComplete);
             if (emotionPlanets.length >= EMOTION_PLANET_DEFS.length) {
-                onComplete?.();
+                flushPlanetarySpawnCallbacks();
                 return;
             }
             if (planetarySpawnQueue) return;
@@ -5418,7 +5682,7 @@
             const spawnNext = () => {
                 if (index >= EMOTION_PLANET_DEFS.length) {
                     planetarySpawnQueue = null;
-                    onComplete?.();
+                    flushPlanetarySpawnCallbacks();
                     return;
                 }
                 spawnSingleEmotionPlanet(EMOTION_PLANET_DEFS[index]);
@@ -5426,6 +5690,10 @@
                 planetarySpawnQueue = requestAnimationFrame(spawnNext);
             };
             planetarySpawnQueue = requestAnimationFrame(spawnNext);
+        }
+
+        function ensurePlanetsSpawned(onComplete = null) {
+            spawnEmotionPlanetsChunked(onComplete);
         }
 
         function spawnEmotionPlanets() {
@@ -5444,6 +5712,7 @@
             pointerDownPlanetId = null;
             planetaryAnimLastTime = null;
             clearPlanetTrails();
+            clearPlanetaryGhostConstellations();
 
             while (emotionPlanetsGroup.children.length) {
                 const child = emotionPlanetsGroup.children[0];
@@ -5457,8 +5726,9 @@
                         }
                     }
                     if (node.material?.uniforms?.map?.value) {
-                        node.material.uniforms.map.value.dispose();
-                    } else if (node.material?.map) {
+                        const tex = node.material.uniforms.map.value;
+                        if (!cachedPlanetTextures.has(tex)) tex.dispose();
+                    } else if (node.material?.map && !cachedPlanetTextures.has(node.material.map)) {
                         node.material.map.dispose();
                     }
                 });
@@ -5531,7 +5801,7 @@
             starsRotating = true;
             controls.autoRotate = false;
             controls.enabled = false;
-            ensurePlanetsSpawned();
+            ensurePlanetsSpawned(() => ensurePlanetaryCommunityConstellations());
             setPlanetarySystemVisible(false);
             emotionPlanets.forEach((planet) => planet.group.scale.setScalar(1));
         }
@@ -5552,9 +5822,8 @@
             }
 
             applyPlanetaryConstellationStyle();
-            requestAnimationFrame(() => spawnPlanetaryCommunityConstellations());
+            ensurePlanetaryCommunityConstellations();
             selectedPlanetId = null;
-            applyPlanetaryCleanView();
             updatePlanetaryGhostVisibility(null);
 
             controls.screenSpacePanning = false;
@@ -5816,7 +6085,9 @@
             semanticBondRegistry.clear();
             resonancePointsGroup.visible = true;
             clearPlanetaryGhostConstellations();
-            clearEmotionPlanets();
+            if (emotionPlanets.length) {
+                clearEmotionPlanets();
+            }
 
             while (resonancePointsGroup.children.length) {
                 const child = resonancePointsGroup.children[0];
@@ -5908,9 +6179,9 @@
         let dispersionStart = 0;
         let constellationCameraFrame = null;
         let pointerDownPos = null;
-        const CONSTELLATION_EDIT_MAX_RADIUS = 38;
-        const CONSTELLATION_EDIT_MIN_DIST = 4.2;
-        const CONSTELLATION_STARFIELD_COMPACT = 0.56;
+        const CONSTELLATION_EDIT_MAX_RADIUS = 148;
+        const CONSTELLATION_EDIT_MIN_DIST = 5.8;
+        const CONSTELLATION_STARFIELD_COMPACT = 1;
         let starfieldCompactedForEditing = false;
         const DISPERSION_MS = 2200;
         const CLICK_TOLERANCE = 24;
@@ -5919,7 +6190,25 @@
         const DEFAULT_CONTROLS_MIN_DISTANCE = 0.25;
         const DEFAULT_CONTROLS_MAX_DISTANCE = 320;
         const DEFAULT_CONTROLS_ZOOM_SPEED = 1.8;
+        const CONSTELLATION_EDIT_MIN_DISTANCE = 0.2;
+        const CONSTELLATION_EDIT_MAX_DISTANCE = 680;
         const BACKGROUND_STAR_RAY_THRESHOLD = 68;
+
+        function applyConstellationEditingZoomLimits() {
+            const bounds = getWordConstellationBounds();
+            const size = Math.max(bounds.getSize(new THREE.Vector3()).length(), 48);
+            const viewDistance = size * 0.92 + 36;
+            const currentDistance = Math.max(camera.position.distanceTo(controls.target), 0.01);
+
+            controls.enableZoom = true;
+            controls.minDistance = Math.max(CONSTELLATION_EDIT_MIN_DISTANCE, size * 0.008);
+            controls.maxDistance = Math.max(
+                currentDistance * 2.8,
+                viewDistance * 6.5,
+                size * 5,
+                CONSTELLATION_EDIT_MAX_DISTANCE
+            );
+        }
 
         window.addEventListener('resize', () => {
             camera.aspect = window.innerWidth / window.innerHeight;
@@ -5978,38 +6267,68 @@
 
         function pickStarIndices(count) {
             const indices = [];
-            const anchor = new THREE.Vector3(0, 0, 0);
+            const used = new Set();
             const minDist = CONSTELLATION_EDIT_MIN_DIST;
-            const maxRadius = CONSTELLATION_EDIT_MAX_RADIUS;
-            const candidates = Array.from({ length: starCount }, (_, i) => i)
-                .filter((i) => {
-                    const x = position[i * 3];
-                    const y = position[i * 3 + 1];
-                    const z = position[i * 3 + 2];
-                    return anchor.distanceTo(new THREE.Vector3(x, y, z)) < maxRadius;
-                })
-                .sort(() => Math.random() - 0.5);
+            const minDistSq = minDist * minDist;
+            const maxRadiusSq = CONSTELLATION_EDIT_MAX_RADIUS * CONSTELLATION_EDIT_MAX_RADIUS;
+            const pool = [];
 
-            for (const idx of candidates) {
-                if (indices.length >= count) break;
-
-                const x = position[idx * 3];
-                const y = position[idx * 3 + 1];
-                const z = position[idx * 3 + 2];
-
-                const tooClose = indices.some((other) => {
-                    const dx = position[other * 3] - x;
-                    const dy = position[other * 3 + 1] - y;
-                    const dz = position[other * 3 + 2] - z;
-                    return Math.hypot(dx, dy, dz) < minDist;
-                });
-
-                if (!tooClose) indices.push(idx);
+            for (let i = 0; i < starCount; i += 1) {
+                const i3 = i * 3;
+                const x = position[i3];
+                const y = position[i3 + 1];
+                const z = position[i3 + 2];
+                if ((x * x + y * y + z * z) <= maxRadiusSq) {
+                    pool.push(i);
+                }
             }
 
-            while (indices.length < count) {
-                const idx = Math.floor(Math.random() * starCount);
-                if (!indices.includes(idx)) indices.push(idx);
+            for (let n = pool.length - 1; n > 0; n -= 1) {
+                const j = Math.floor(Math.random() * (n + 1));
+                const tmp = pool[n];
+                pool[n] = pool[j];
+                pool[j] = tmp;
+            }
+
+            const tryPickFromPool = (distSq) => {
+                for (let p = 0; p < pool.length && indices.length < count; p += 1) {
+                    const idx = pool[p];
+                    if (used.has(idx)) continue;
+
+                    const i3 = idx * 3;
+                    const x = position[i3];
+                    const y = position[i3 + 1];
+                    const z = position[i3 + 2];
+
+                    let tooClose = false;
+                    for (let j = 0; j < indices.length; j += 1) {
+                        const o3 = indices[j] * 3;
+                        const dx = position[o3] - x;
+                        const dy = position[o3 + 1] - y;
+                        const dz = position[o3 + 2] - z;
+                        if ((dx * dx + dy * dy + dz * dz) < distSq) {
+                            tooClose = true;
+                            break;
+                        }
+                    }
+                    if (tooClose) continue;
+
+                    used.add(idx);
+                    indices.push(idx);
+                }
+            };
+
+            tryPickFromPool(minDistSq);
+            if (indices.length < count) {
+                tryPickFromPool(minDistSq * 0.55);
+            }
+            if (indices.length < count) {
+                for (let p = 0; p < pool.length && indices.length < count; p += 1) {
+                    const idx = pool[p];
+                    if (used.has(idx)) continue;
+                    used.add(idx);
+                    indices.push(idx);
+                }
             }
 
             return indices;
@@ -6105,6 +6424,7 @@
 
         function finalizeConstellationEditing() {
             constellationComplete = true;
+            warmPlanetaryAssets();
             clearHoverState();
 
             if (selectedStar) {
@@ -6125,7 +6445,6 @@
             }, FADE_MS);
 
             totalWords = words.length;
-            userConstellationName = deriveEmotionName(words);
             clickedStars.clear();
             clickedNodeOrder.length = 0;
             constellationComplete = false;
@@ -6139,34 +6458,36 @@
             constellationHoverTargets.length = 0;
             placedConstellationCenters.length = 0;
             resetEmotionNames();
-            clearConstellationEditingState();
-            clearGhostAndBridgeState();
             downloadButton.classList.remove('visible');
 
-            compactStarfieldForConstellationEditing();
+            requestAnimationFrame(() => {
+                clearConstellationEditingState();
+                clearGhostAndBridgeState();
 
-            const starIndices = pickStarIndices(words.length);
-            words.forEach((word, i) => {
-                createWordStar(word, starIndices[i], i);
-                wordStars[wordStars.length - 1].labelEl.classList.add('editing-hint');
+                requestAnimationFrame(() => {
+                    const starIndices = pickStarIndices(words.length);
+                    words.forEach((word, i) => {
+                        createWordStar(word, starIndices[i], i);
+                    });
+                    tightenWordConstellationLayout(0.9);
+                    updateWordGlimmerGeometry();
+                    wordGlimmerPoints.visible = true;
+                    frameConstellationForEditing();
+                    applyConstellationStarfieldLook();
+
+                    constellationMode = true;
+                    dispersingWords = true;
+                    dispersionStart = performance.now();
+                    controls.enabled = true;
+                    controls.enableRotate = true;
+                    controls.enablePan = true;
+                    controls.enableZoom = true;
+                    controls.autoRotate = false;
+                    wordGlimmerMaterial.size = 7;
+                    wordGlimmerMaterial.opacity = 0.58;
+                    hoverGlow.scale.set(14, 14, 1);
+                });
             });
-            tightenWordConstellationLayout();
-            updateWordGlimmerGeometry();
-            frameConstellationForEditing();
-            applyConstellationStarfieldLook();
-            warmPlanetaryAssets();
-
-            constellationMode = true;
-            dispersingWords = true;
-            dispersionStart = performance.now();
-            controls.enabled = true;
-            controls.enableRotate = true;
-            controls.enablePan = true;
-            controls.enableZoom = true;
-            controls.autoRotate = false;
-            wordGlimmerMaterial.size = 11.5;
-            wordGlimmerMaterial.opacity = 0.9;
-            hoverGlow.scale.set(28, 28, 1);
         }
 
         function addGhostLine(from, to, parent, targetOpacity, preserveZ = false, planetaryMeta = null) {
@@ -6212,7 +6533,7 @@
 
         function hideIndividualWordLabels() {
             wordStars.forEach((ws) => {
-                ws.labelEl.classList.remove('editing-hint', 'hover-reveal', 'selected');
+                ws.labelEl.classList.remove('hover-reveal', 'selected', 'editing-hint');
                 ws.labelEl.style.visibility = 'hidden';
                 ws.labelEl.style.opacity = '0';
             });
@@ -6260,23 +6581,31 @@
             node.target.copy(pos);
             if (node.hitArea) node.hitArea.position.copy(pos);
             if (node.label) node.label.position.copy(pos);
+            if (node.beacon) node.beacon.position.copy(pos);
             if (node.linkStarMesh) node.linkStarMesh.position.copy(pos);
             if (node.isWord) updateWordGlimmerGeometry();
         }
 
-        function promoteUserConstellationVisuals() {
-            wordGlimmerPoints.visible = false;
+        function restorePlanetaryUserConstellationVisuals() {
             getActiveUserConstellationNodes().forEach((node) => {
                 if (node.linkStarMesh) {
-                    applyChartSpriteStyle(node.linkStarMesh, { size: 3.2, opacity: 0.96, bright: true });
+                    applyChartSpriteStyle(node.linkStarMesh, {
+                        size: node.isWord ? 4.2 : 3.5,
+                        opacity: 0.96,
+                        bright: Boolean(node.isWord)
+                    });
                 }
             });
             constellationLinks.forEach((link) => {
-                if (link.isUserDrawnLink || link.isWordLink) {
-                    link.mesh.visible = true;
-                    link.mesh.material.opacity = 0;
-                }
+                if (!link.isUserDrawnLink && !link.isWordLink) return;
+                link.mesh.visible = true;
+                link.mesh.material.opacity = link.isWordLink ? 0.42 : 0.28;
             });
+        }
+
+        function promoteUserConstellationVisuals() {
+            wordGlimmerPoints.visible = false;
+            restorePlanetaryUserConstellationVisuals();
             if (userNameLabel?.element) {
                 userNameLabel.element.classList.add('chart');
             }
@@ -6294,20 +6623,24 @@
         function frameConstellationForEditing(durationMs = DISPERSION_MS) {
             const bounds = getWordConstellationBounds();
             const center = bounds.getCenter(new THREE.Vector3());
-            const size = Math.max(bounds.getSize(new THREE.Vector3()).length(), 22);
-            const viewDistance = size * 0.44 + 9;
+            const size = Math.max(bounds.getSize(new THREE.Vector3()).length(), 48);
+            const viewDistance = size * 0.92 + 36;
 
             constellationCameraFrame = {
                 startTime: performance.now(),
                 duration: durationMs,
                 fromCamera: camera.position.clone(),
-                toCamera: center.clone().add(new THREE.Vector3(0, size * 0.08, viewDistance)),
+                toCamera: center.clone().add(new THREE.Vector3(0, size * 0.05, viewDistance)),
                 fromTarget: controls.target.clone(),
                 toTarget: center.clone()
             };
 
-            controls.minDistance = Math.max(0.006, size * 0.008);
-            controls.maxDistance = Math.max(viewDistance * 3.4, size * 2.6);
+            controls.minDistance = Math.max(CONSTELLATION_EDIT_MIN_DISTANCE, size * 0.008);
+            controls.maxDistance = Math.max(
+                viewDistance * 6.5,
+                size * 5,
+                CONSTELLATION_EDIT_MAX_DISTANCE
+            );
             controls.zoomSpeed = 4.5;
         }
 
@@ -6340,9 +6673,8 @@
             controls.enableRotate = true;
             controls.enablePan = true;
             controls.enableZoom = true;
-            controls.minDistance = DEFAULT_CONTROLS_MIN_DISTANCE;
-            controls.maxDistance = DEFAULT_CONTROLS_MAX_DISTANCE;
             controls.zoomSpeed = DEFAULT_CONTROLS_ZOOM_SPEED;
+            applyConstellationEditingZoomLimits();
         }
 
         function getUserConstellationBounds() {
@@ -6364,12 +6696,14 @@
         }
 
         function downloadConstellationImage() {
-            if (planetaryMode && selectedPlanetId === getUserPlanetCategoryId()) {
+            if (canDownloadChosenPlanetSkyView()) {
                 downloadPlanetViewImage();
                 return;
             }
 
-            downloadUserConstellationImage();
+            if (!planetaryMode) {
+                downloadUserConstellationImage();
+            }
         }
 
         function downloadUserConstellationImage() {
@@ -6429,20 +6763,8 @@
             const context = composite.getContext('2d');
             context.drawImage(renderer.domElement, 0, 0);
 
-            const labelPosition = center.clone().add(new THREE.Vector3(0, 22, 0)).project(camera);
-            if (labelPosition.z < 1) {
-                const x = (labelPosition.x * 0.5 + 0.5) * width;
-                const y = (-labelPosition.y * 0.5 + 0.5) * height;
-                context.font = '13px "Andale Mono", monospace';
-                context.fillStyle = 'rgba(255, 255, 255, 0.95)';
-                context.textAlign = 'center';
-                context.textBaseline = 'bottom';
-                context.fillText(userConstellationName, x, y);
-            }
-
             const link = document.createElement('a');
-            const safeName = cleanWord(userConstellationName) || 'sestosenso';
-            link.download = `costellazione-${safeName}.png`;
+            link.download = 'costellazione-sestosenso.png';
             link.href = composite.toDataURL('image/png');
             link.click();
 
@@ -6472,8 +6794,10 @@
         }
 
         function downloadPlanetViewImage() {
-            const userPlanetId = getUserPlanetCategoryId();
-            const planet = emotionPlanets.find((entry) => entry.id === userPlanetId);
+            if (!canDownloadChosenPlanetSkyView()) return;
+
+            const chosenPlanetId = userChosenEmotionPlanetId;
+            const planet = emotionPlanets.find((entry) => entry.id === chosenPlanetId);
             if (!planet) return;
 
             if (userPlanetSkyMode && planetSkyChartCanvas?.classList.contains('visible')) {
@@ -6481,7 +6805,7 @@
                 downloadButton.style.visibility = 'hidden';
 
                 const link = document.createElement('a');
-                const planetLabel = EMOTION_PLANET_DEFS.find((def) => def.id === userPlanetId)?.label || userPlanetId;
+                const planetLabel = EMOTION_PLANET_DEFS.find((def) => def.id === chosenPlanetId)?.label || chosenPlanetId;
                 const safeName = cleanWord(planetLabel) || 'pianeta';
                 link.download = `vista-pianeta-${safeName}.png`;
                 link.href = planetSkyChartCanvas.toDataURL('image/png');
@@ -6507,7 +6831,7 @@
                 const context = composite.getContext('2d');
                 context.drawImage(renderer.domElement, 0, 0);
 
-                const planetLabel = EMOTION_PLANET_DEFS.find((def) => def.id === userPlanetId)?.label || userPlanetId;
+                const planetLabel = EMOTION_PLANET_DEFS.find((def) => def.id === chosenPlanetId)?.label || chosenPlanetId;
                 context.font = '11px Georgia, serif';
                 context.fillStyle = 'rgba(255, 255, 255, 0.88)';
                 context.textAlign = 'center';
@@ -6543,10 +6867,10 @@
             downloadButton.style.visibility = 'hidden';
             labelRenderer.domElement.style.visibility = 'visible';
             setUserConstellationVisibleInPlanetaryMode(true);
-            updatePlanetaryGhostVisibility(userPlanetId);
+            updatePlanetaryGhostVisibility(chosenPlanetId, { forDownloadSnapshot: true });
 
             ghostLines.forEach((entry) => {
-                if (entry.isPlanetary && entry.meta && fraseMatchesPlanet(entry.meta, userPlanetId)) {
+                if (entry.isPlanetary && entry.meta && fraseMatchesPlanet(entry.meta, chosenPlanetId)) {
                     entry.material.opacity = entry.targetOpacity;
                 }
             });
@@ -6568,7 +6892,7 @@
 
             const bounds = new THREE.Box3();
             planetaryGhostConstellations
-                .filter((meta) => fraseMatchesPlanet(meta, userPlanetId))
+                .filter((meta) => fraseMatchesPlanet(meta, chosenPlanetId))
                 .forEach((meta) => bounds.expandByObject(meta.group));
             if (bounds.isEmpty()) {
                 bounds.setFromCenterAndSize(worldPos, new THREE.Vector3(40, 40, 40));
@@ -6595,7 +6919,7 @@
             const context = composite.getContext('2d');
             context.drawImage(renderer.domElement, 0, 0);
 
-            const planetLabel = EMOTION_PLANET_DEFS.find((def) => def.id === userPlanetId)?.label || userPlanetId;
+            const planetLabel = EMOTION_PLANET_DEFS.find((def) => def.id === chosenPlanetId)?.label || chosenPlanetId;
             context.font = '11px Georgia, serif';
             context.fillStyle = 'rgba(255, 255, 255, 0.88)';
             context.textAlign = 'center';
@@ -6624,7 +6948,7 @@
             downloadButton.style.visibility = savedDownloadVisibility;
             labelRenderer.domElement.style.visibility = savedLabelRendererVisibility;
             setUserConstellationVisibleInPlanetaryMode(true);
-            updatePlanetaryGhostVisibility(userPlanetId);
+            updatePlanetaryGhostVisibility(chosenPlanetId, { forDownloadSnapshot: true });
 
             renderer.render(scene, camera);
             labelRenderer.render(scene, camera);
@@ -6650,7 +6974,6 @@
             }
 
             prepareGlobeLockAnimation();
-            addUserConstellationNameLabel();
             controls.enabled = false;
         }
 
@@ -6660,9 +6983,14 @@
         function updateGhostConstellations() {
             ghostLines.forEach((entry) => {
                 if (userPlanetSkyMode && entry.isSkyGhost) return;
+                if (entry.isPlanetary) return;
                 entry.material.opacity += (entry.targetOpacity - entry.material.opacity) * 0.05;
             });
         }
+
+        const dispersionLerpPos = new THREE.Vector3();
+        const dispersionOrigin = new THREE.Vector3(0, 0, 0);
+        const dispersionGlimmerScratch = [];
 
         function updateDispersion(now) {
             if (!dispersingWords) return;
@@ -6670,23 +6998,25 @@
             const t = Math.min((now - dispersionStart) / DISPERSION_MS, 1);
             const eased = 1 - Math.pow(1 - t, 3);
 
-            wordStars.forEach((ws) => {
-                const pos = new THREE.Vector3().lerpVectors(new THREE.Vector3(0, 0, 0), ws.target, eased);
-                ws.label.position.copy(pos);
-                ws.hitArea.position.copy(pos);
-                if (ws.beacon) ws.beacon.position.copy(pos);
-                if (ws.linkStarMesh) ws.linkStarMesh.position.copy(pos);
+            wordStars.forEach((ws, i) => {
+                dispersionLerpPos.lerpVectors(dispersionOrigin, ws.target, eased);
+                ws.label.position.copy(dispersionLerpPos);
+                ws.hitArea.position.copy(dispersionLerpPos);
+                if (ws.beacon) ws.beacon.position.copy(dispersionLerpPos);
+                if (ws.linkStarMesh) ws.linkStarMesh.position.copy(dispersionLerpPos);
+                if (!dispersionGlimmerScratch[i]) {
+                    dispersionGlimmerScratch[i] = new THREE.Vector3();
+                }
+                dispersionGlimmerScratch[i].copy(dispersionLerpPos);
             });
-            updateWordGlimmerGeometry(wordStars.map((ws) => {
-                return new THREE.Vector3().lerpVectors(new THREE.Vector3(0, 0, 0), ws.target, eased);
-            }));
+            updateWordGlimmerGeometry(dispersionGlimmerScratch);
 
             wordGlimmerMaterial.opacity = 0.35 + 0.62 * eased;
 
             if (t >= 1) {
                 dispersingWords = false;
-                wordGlimmerMaterial.opacity = 0.9;
-                wordGlimmerMaterial.size = 11.5;
+                wordGlimmerMaterial.opacity = 0.58;
+                wordGlimmerMaterial.size = 7;
                 wordStars.forEach((ws) => {
                     applyStarNodePosition(ws, ws.target);
                 });
@@ -6719,7 +7049,7 @@
             }
 
             if (planetaryMode) {
-                updatePlanetaryGhostVisibility(selectedPlanetId || null);
+                hideAllPlanetaryGhostConstellations();
             }
         }
 
@@ -6797,10 +7127,17 @@
                 return;
             }
 
+            if (!userConstellationLaunched && constellationMode) {
+                hoverGlow.position.copy(hoveredStar.target);
+                hoverGlow.visible = true;
+                hoverGlow.material.opacity = 0.24;
+                return;
+            }
+
             hoveredStar.labelEl.classList.add('hover-reveal');
             hoverGlow.position.copy(hoveredStar.target);
             hoverGlow.visible = true;
-            hoverGlow.material.opacity = 0.42;
+            hoverGlow.material.opacity = 0.28;
         }
 
         function updateWordGlimmer(now) {
@@ -6812,30 +7149,86 @@
 
             wordStars.forEach((ws) => {
                 if (!ws.beacon) return;
-                const pulse = 0.74 + Math.sin(now * 0.0018 + ws.glimmerPhase) * 0.14;
-                const selectedBoost = selectedStar === ws ? 0.16 : 0;
-                const hoverBoost = hoveredStar === ws ? 0.2 : 0;
-                ws.beacon.material.opacity = Math.min(1, pulse + selectedBoost + hoverBoost);
-                ws.beacon.scale.setScalar(40 + (selectedStar === ws ? 10 : hoveredStar === ws ? 14 : 0));
+                const pulse = 0.58 + Math.sin(now * 0.0018 + ws.glimmerPhase) * 0.1;
+                const selectedBoost = selectedStar === ws ? 0.1 : 0;
+                const hoverBoost = hoveredStar === ws ? 0.08 : 0;
+                ws.beacon.material.opacity = Math.min(0.82, pulse + selectedBoost + hoverBoost);
+                ws.beacon.scale.setScalar(22 + (selectedStar === ws ? 5 : hoveredStar === ws ? 4 : 0));
             });
 
             if (isHoveringWord) {
-                hoverGlow.material.opacity = 0.58 + Math.sin(now * 0.003) * 0.12;
-                wordGlimmerMaterial.opacity = 0.98 + breathe;
-                wordGlimmerMaterial.size = 14;
+                hoverGlow.material.opacity = 0.3 + Math.sin(now * 0.003) * 0.06;
+                wordGlimmerMaterial.opacity = 0.68 + breathe;
+                wordGlimmerMaterial.size = 8.2;
                 return;
             }
 
             hoverGlow.visible = false;
-            wordGlimmerMaterial.opacity = isSelectedWord ? 0.96 + breathe : 0.9 + breathe;
-            wordGlimmerMaterial.size = isSelectedWord ? 13 : 11.5;
+            wordGlimmerMaterial.opacity = isSelectedWord ? 0.66 + breathe : 0.58 + breathe;
+            wordGlimmerMaterial.size = isSelectedWord ? 7.8 : 7;
+            updateAllRevealedWordLabels();
+        }
+
+        function updateRevealedWordLabelOffset(starNode) {
+            if (!starNode?.isWord || !starNode.labelEl.classList.contains('revealed')) return;
+
+            const screen = projectWorldToClient(starNode.target);
+            if (screen.depth > 1) return;
+
+            starNode.labelEl.style.width = 'auto';
+            starNode.labelEl.style.height = '42px';
+            starNode.labelEl.style.minWidth = '42px';
+            starNode.labelEl.style.padding = '0 14px';
+
+            const labelWidth = starNode.labelEl.offsetWidth || 72;
+            const labelHeight = 42;
+            const halfW = labelWidth / 2;
+            const halfH = labelHeight / 2;
+
+            const glowClear = 30;
+            const gap = 6;
+            const dist = glowClear + gap + Math.max(halfW, halfH);
+
+            const candidates = [
+                { tx: dist - halfW, ty: -(dist + halfH) },
+                { tx: -(dist + halfW), ty: -(dist + halfH) },
+                { tx: dist - halfW, ty: dist - halfH },
+                { tx: -(dist + halfW), ty: dist - halfH }
+            ];
+
+            let chosen = candidates[0];
+            for (const option of candidates) {
+                const left = screen.x + option.tx;
+                const top = screen.y + option.ty;
+                const right = left + labelWidth;
+                const bottom = top + labelHeight;
+                if (left >= 10 && top >= 10 && right <= window.innerWidth - 10 && bottom <= window.innerHeight - 10) {
+                    chosen = option;
+                    break;
+                }
+            }
+
+            starNode.labelEl.style.transform = `translate(${chosen.tx}px, ${chosen.ty}px)`;
+        }
+
+        function updateAllRevealedWordLabels() {
+            if (!constellationMode || userConstellationLaunched) return;
+            wordStars.forEach((ws) => updateRevealedWordLabelOffset(ws));
+        }
+
+        function revealWordLabel(starNode) {
+            if (!starNode?.isWord) return;
+            starNode.labelEl.classList.remove('hover-reveal', 'selected', 'editing-hint');
+            starNode.labelEl.classList.add('revealed');
+            starNode.label.position.copy(starNode.target);
+            requestAnimationFrame(() => updateRevealedWordLabelOffset(starNode));
         }
 
         function highlightStar(starNode, active) {
             if (!starNode?.isWord) return;
 
             if (active) {
-                starNode.labelEl.classList.add('selected');
+                revealWordLabel(starNode);
             } else {
                 starNode.labelEl.classList.remove('selected');
             }
@@ -6856,6 +7249,9 @@
             if (isNewStar) {
                 clickedStars.add(starNode.starIndex);
                 clickedNodeOrder.push(starNode);
+                if (starNode.isWord) {
+                    revealWordLabel(starNode);
+                }
             }
 
             if (!constellationComplete) {
@@ -6911,21 +7307,22 @@
         function pickNearestBackgroundStarIndex(clientX, clientY, maxPixelDist) {
             const centroid = getConstellationCentroid();
             const activeNodes = getActiveUserConstellationNodes();
-            const preferredRadius = CONSTELLATION_EDIT_MAX_RADIUS * CONSTELLATION_STARFIELD_COMPACT * 2.6;
+            const preferredRadius = CONSTELLATION_EDIT_MAX_RADIUS * 2.15;
             let bestIndex = null;
             let bestScore = Infinity;
             const worldPos = new THREE.Vector3();
+            const stride = starCount > 3000 ? 4 : 1;
 
-            for (let i = 0; i < starCount; i += 1) {
-                if (wordStarByIndex.has(i) || anonymousNodes.has(i)) continue;
+            const scoreStar = (i) => {
+                if (wordStarByIndex.has(i) || anonymousNodes.has(i)) return;
 
                 const i3 = i * 3;
                 worldPos.set(position[i3], position[i3 + 1], position[i3 + 2]);
                 const screen = projectWorldToClient(worldPos);
-                if (screen.depth > 1 || screen.depth < -1) continue;
+                if (screen.depth > 1 || screen.depth < -1) return;
 
                 const screenDist = Math.hypot(clientX - screen.x, clientY - screen.y);
-                if (screenDist > maxPixelDist) continue;
+                if (screenDist > maxPixelDist) return;
 
                 const worldDist = activeNodes.length ? centroid.distanceTo(worldPos) : 0;
                 const compactPenalty = activeNodes.length ? Math.max(0, worldDist - preferredRadius) * 0.045 : 0;
@@ -6933,6 +7330,18 @@
                 if (score < bestScore) {
                     bestScore = score;
                     bestIndex = i;
+                }
+            };
+
+            for (let i = 0; i < starCount; i += stride) {
+                scoreStar(i);
+            }
+
+            if (stride > 1 && bestIndex !== null) {
+                const refineStart = Math.max(0, bestIndex - stride);
+                const refineEnd = Math.min(starCount, bestIndex + stride + 1);
+                for (let i = refineStart; i < refineEnd; i += 1) {
+                    scoreStar(i);
                 }
             }
 
@@ -7002,7 +7411,10 @@
             pointerDownPick = pickStarFromClient(event.clientX, event.clientY);
         });
 
-        renderer.domElement.addEventListener('mousemove', (event) => {
+        let hoverPickScheduled = false;
+        let pendingHoverEvent = null;
+
+        function handleCanvasMouseMove(event) {
             if (isOrbiting) {
                 clearHoverState();
                 clearConstellationNameHover();
@@ -7040,6 +7452,16 @@
             } else {
                 clearHoverState();
             }
+        }
+
+        renderer.domElement.addEventListener('mousemove', (event) => {
+            pendingHoverEvent = event;
+            if (hoverPickScheduled) return;
+            hoverPickScheduled = true;
+            requestAnimationFrame(() => {
+                hoverPickScheduled = false;
+                if (pendingHoverEvent) handleCanvasMouseMove(pendingHoverEvent);
+            });
         });
 
         renderer.domElement.addEventListener('pointercancel', () => {
@@ -7211,7 +7633,9 @@
 
         animate(0);
 
+        const introScreen = document.getElementById('intro-screen');
         const introText = document.getElementById('intro-text');
+        const introContinueHint = document.getElementById('intro-continue-hint');
         const promptScreen = document.getElementById('prompt-screen');
         const promptInput = document.getElementById('prompt-input');
         const postIntroUi = document.getElementById('post-intro-ui');
@@ -7282,6 +7706,52 @@
             event.preventDefault();
             disperseWords(words);
         });
+
+        let introContinueReady = false;
+
+        function showIntroContinueHint() {
+            if (!introContinueHint) return;
+            introContinueHint.classList.add('visible');
+            introScreen?.classList.add('awaiting-continue');
+            introContinueReady = true;
+
+            introScreen?.addEventListener('pointerdown', onIntroContinuePointer, { once: true });
+            document.addEventListener('keydown', onIntroContinueKey);
+        }
+
+        function onIntroContinuePointer(event) {
+            event.preventDefault();
+            dismissIntroAndShowPrompt();
+        }
+
+        function onIntroContinueKey(event) {
+            if (!introContinueReady) return;
+            if (event.key !== 'Enter' && event.key !== ' ') return;
+            event.preventDefault();
+            dismissIntroAndShowPrompt();
+        }
+
+        function dismissIntroAndShowPrompt() {
+            if (!introContinueReady) return;
+            introContinueReady = false;
+            document.removeEventListener('keydown', onIntroContinueKey);
+
+            if (introScreen) {
+                introScreen.classList.add('fade-out');
+                introScreen.classList.remove('visible', 'awaiting-continue');
+                introContinueHint?.classList.remove('visible');
+
+                setTimeout(() => {
+                    introScreen.remove();
+                    introContinueHint?.remove();
+                    showPrompt();
+                }, FADE_MS + 120);
+                return;
+            }
+
+            introText?.remove();
+            showPrompt();
+        }
 
         function showPrompt() {
             introCameraZoom = null;
@@ -7556,21 +8026,20 @@
             controls.enabled = false;
             startIntroCameraZoom(1800);
 
-            if (introText) {
-                introText.classList.remove('fade-out');
+            if (introScreen) {
+                introScreen.classList.remove('fade-out');
                 requestAnimationFrame(() => {
-                    introText.classList.add('visible');
+                    introScreen.classList.add('visible');
                 });
 
                 setTimeout(() => {
-                    introText.classList.add('fade-out');
-                    introText.classList.remove('visible');
-                }, INTRO_VISIBLE_MS);
-
+                    showIntroContinueHint();
+                }, FADE_MS);
+            } else if (introText) {
                 setTimeout(() => {
                     introText.remove();
                     showPrompt();
-                }, INTRO_VISIBLE_MS + FADE_MS + 120);
+                }, 220);
             } else {
                 setTimeout(() => {
                     showPrompt();
