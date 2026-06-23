@@ -256,10 +256,12 @@ node scripts/build-bundle.mjs
 
 ## Crediti
 
-- **Concept, design e sviluppo**: Nicole Somma
-- **Font**: Dotnation, Andale Mono
-- **Audio**: `star 1.mp3`, `star2.mp3`
-- **Rendering**: Three.js, Canvas 2D, Web Audio API
+**Autrice:** Nicole Somma <br>
+**Email:** nicolesomma26@gmail.com <br>
+**Instagram:** @__nicolesomma__
+**Font**: Dotnation, Andale Mono
+**Audio**: `star 1.mp3`, `star2.mp3`
+**Rendering**: Three.js, Canvas 2D, Web Audio API
 
 ---
 
