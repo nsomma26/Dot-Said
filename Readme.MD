@@ -59,6 +59,10 @@ L’esperienza si sviluppa in sette passaggi principali:
 6. **Lancio**  
    La costellazione viene inviata nello spazio e diventa parte del paesaggio visivo.
 
+<p align="center">
+  <img src="./assets/interazione.gif" alt="Preview desktop di Dot said" width="700">
+</p>
+
 7. **Pianeti-emozione**  
    L’utente sceglie uno tra otto pianeti emotivi:
 
@@ -72,6 +76,11 @@ L’esperienza si sviluppa in sette passaggi principali:
    - rabbia
 
    Dopo la scelta, entra in un cielo 2D navigabile con frasi e costellazioni associate all’emozione selezionata.
+
+
+<p align="center">
+  <img src="./assets/pianeti.gif" alt="Preview desktop di Dot said" width="700">
+</p>
 
 ---
 
