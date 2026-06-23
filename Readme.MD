@@ -79,7 +79,7 @@ L’esperienza si sviluppa in sette passaggi principali:
 
 
 <p align="center">
-  <img src="./assets/pianeti1.gif" alt="Preview restituzione di Dot said" width="700">
+  <img src="./assets/pia.gif" alt="Preview restituzione di Dot said" width="700">
 </p>
 
 ---
