@@ -4,62 +4,59 @@
 
 *Dare forma al sesto senso attraverso le parole che non diciamo ad alta voce.*
 
-Dot said è un progetto interattivo sul non detto. L'utente scrive fino a dieci parole, le disperde nello spazio, le ricompone in una costellazione e poi la osserva dentro un sistema di pianeti-emozione popolato anche da frasi della community.
+Dot said nasce da una domanda:
+
+> se il sesto senso fossero tutte le cose, che non siamo capaci di dire ad alta voce per paura?
+
+Il progetto immagina il sesto senso come uno spazio digitale in cui il non detto può diventare visibile. L’utente scrive fino a dieci parole, le vede disperdersi nello spazio e le ricompone in una costellazione personale. Una volta completata, la costellazione viene lanciata in un sistema di pianeti-emozione, dove entra in relazione con frasi e tracce appartenenti a una dimensione collettiva.
 
 Concept, design e sviluppo: **Nicole Somma**.
 
 ---
 
-## Stato del progetto
+## Il progetto
 
-Questa versione non è più il semplice prototipo di un globo stellato. L'esperienza attuale include:
+Dot said è un’esperienza interattiva sul rapporto tra linguaggio, emozione e spazio.
 
-- schermata di caricamento con particella centrale, percentuale e reveal del logo;
-- suono ambientale introduttivo e feedback audio sulle interazioni;
-- cursore luminoso custom su desktop;
-- intro testuale sul sesto senso e sul non detto;
-- input centrale per scrivere massimo 10 parole;
-- dispersione delle parole nello spazio e trasformazione in stelle selezionabili;
-- costruzione manuale della propria costellazione tramite click sulle stelle;
-- lancio della costellazione nello spazio;
-- sistema di 8 pianeti-emozione;
-- scelta del pianeta più vicino al proprio stato d'animo;
-- cielo del pianeta in canvas 2D con costellazioni/frasi tematiche;
-- pan, inerzia e zoom nella vista del cielo;
-- download PNG della propria costellazione o della vista del pianeta;
-- pannello About apribile da "beyond the stars".
+L’obiettivo non è interpretare le parole dell’utente, ma trasformarle in una forma visiva e temporanea. Ogni parola inserita diventa una stella; ogni collegamento costruisce una costellazione; ogni scelta emotiva apre un cielo abitato da frasi tematiche.
 
-L'entry point reale dell'app è [`index.html`](./index.html). Il file contiene markup, stile e logica principale della versione corrente.
+Il progetto lavora quindi su due livelli:
+
+| Livello | Descrizione |
+|---|---|
+| Personale | Le parole dell’utente diventano una costellazione |
+| Collettivo | Le frasi della community popolano i cieli dei pianeti-emozione |
 
 ---
 
-## Flusso dell'esperienza
+## Flusso dell’esperienza
 
-1. **Loading**
-   La pagina apre un cielo scuro, una particella luminosa e il logo `dot said`. In parallelo viene preparato l'audio.
+L’esperienza si sviluppa in sette passaggi principali:
 
-2. **Intro**
-   Compare la domanda:
+1. **Loading**  
+   La pagina apre un cielo scuro con una particella luminosa, una percentuale di caricamento e il reveal del logo `dot said`.
 
-   > se il sesto senso fossero tutte le cose, che non siamo capaci di dire ad alta voce per paura?
+2. **Intro**  
+   Compare la domanda sul sesto senso e sul non detto. L’utente prosegue con un click o con tastiera.
 
-   L'utente prosegue con un click o con tastiera.
-
-3. **Il non detto**
+3. **Scrittura**  
    Il prompt chiede:
 
    > cosa ti va di non dire?
 
-   L'utente scrive fino a 10 parole e preme Invio.
+   L’utente può inserire fino a dieci parole.
 
-4. **Costellazione**
-   Le parole si disperdono nel campo stellare. Ogni parola diventa una stella cliccabile: collegandole, l'utente disegna la propria costellazione.
+4. **Dispersione**  
+   Le parole vengono disperse nello spazio e trasformate in stelle selezionabili.
 
-5. **Lancio**
-   Quando la costellazione è completa, viene inviata nello spazio e diventa parte del paesaggio visivo.
+5. **Costellazione**  
+   Cliccando sulle stelle, l’utente collega le parole e costruisce la propria costellazione.
 
-6. **Sistema planetario**
-   L'app mostra 8 pianeti-emozione:
+6. **Lancio**  
+   La costellazione viene inviata nello spazio e diventa parte del paesaggio visivo.
+
+7. **Pianeti-emozione**  
+   L’utente sceglie uno tra otto pianeti emotivi:
 
    - gratitudine
    - felicità
@@ -70,21 +67,46 @@ L'entry point reale dell'app è [`index.html`](./index.html). Il file contiene m
    - paura
    - rabbia
 
-7. **Cielo del pianeta**
-   Dopo la scelta del pianeta, la vista entra in un cielo 2D navigabile, con frasi e costellazioni associate a quella emozione.
+   Dopo la scelta, entra in un cielo 2D navigabile con frasi e costellazioni associate all’emozione selezionata.
+
+---
+
+## Funzionalità principali
+
+Questa versione include:
+
+- schermata di caricamento con particella centrale e reveal del logo;
+- audio ambientale introduttivo e feedback sonori;
+- cursore luminoso custom su desktop;
+- input testuale con limite di 10 parole;
+- trasformazione delle parole in stelle cliccabili;
+- costruzione manuale della costellazione;
+- sistema di 8 pianeti-emozione;
+- cielo del pianeta in Canvas 2D;
+- navigazione con pan, inerzia e zoom;
+- download PNG della propria costellazione o della vista del pianeta;
+- pannello About apribile da `beyond the stars`.
+
+L’entry point reale dell’app è:
+
+```text
+index.html
+```
 
 ---
 
 ## Dati e contenuti
 
-I contenuti principali sono in `data/`:
+I contenuti principali si trovano nella cartella `data/`.
 
-- [`data/frasi-sesto-senso.json`](./data/frasi-sesto-senso.json): dataset principale delle frasi curate per i pianeti, attualmente 160 frasi divise in 8 categorie;
-- [`data/frasi-sesto-senso.js`](./data/frasi-sesto-senso.js): versione caricabile dal browser, esposta in `window.SESTOSENS_DATA.frasiSestoSenso`;
-- [`data/community-phrases.json`](./data/community-phrases.json): frasi community di fallback;
-- [`data/community-phrases.js`](./data/community-phrases.js): versione browser, esposta in `window.SESTOSENS_DATA.communityPhrases`;
-- [`data/emotions.json`](./data/emotions.json): lessico e associazioni semantiche usate nel flusso modulare/sperimentale;
-- [`data/config.json`](./data/config.json): parametri di camera, stelle, audio, controlli e UI per il flusso modulare.
+| File | Funzione |
+|---|---|
+| `data/frasi-sesto-senso.json` | Dataset principale delle frasi curate per i pianeti |
+| `data/frasi-sesto-senso.js` | Versione caricabile dal browser |
+| `data/community-phrases.json` | Frasi community di fallback |
+| `data/community-phrases.js` | Versione browser delle frasi community |
+| `data/emotions.json` | Lessico e associazioni semantiche sperimentali |
+| `data/config.json` | Parametri di camera, stelle, audio, controlli e UI |
 
 La pagina corrente carica direttamente:
 
@@ -93,13 +115,18 @@ La pagina corrente carica direttamente:
 <script src="./data/frasi-sesto-senso.js"></script>
 ```
 
-Se modifichi i JSON e vuoi rigenerare i file `.js`, usa la versione Node dello script:
+I dati vengono esposti nel browser tramite:
+
+```js
+window.SESTOSENS_DATA.communityPhrases
+window.SESTOSENS_DATA.frasiSestoSenso
+```
+
+Se modifichi i file `.json`, rigenera i file `.js` con:
 
 ```bash
 node scripts/generate-data-js.mjs
 ```
-
-Questa variante mantiene le chiavi camelCase attese da `index.html`, come `communityPhrases` e `frasiSestoSenso`.
 
 ---
 
@@ -109,17 +136,18 @@ Questa variante mantiene le chiavi camelCase attese da `index.html`, come `commu
 - **OrbitControls** per rotazione, zoom e navigazione camera;
 - **CSS2DRenderer** per etichette nello spazio 3D;
 - **Canvas 2D** per loading, texture procedurali, export e cielo del pianeta;
-- **Web Audio API** e tag `<audio>` per ambient sound e micro-feedback;
+- **Web Audio API** e tag `<audio>` per suoni ambientali e feedback;
 - **JavaScript ES modules** per la logica Three.js dentro `index.html`;
-- **Python/Node scripts** per generazione dati, bundle di supporto e asset esportati.
+- **Python/Node scripts** per generazione dati, bundle e asset esportati.
 
-Nota: l'app usa Three.js da CDN (`jsdelivr`). Per lavorare offline serve sostituire l'import map con una copia locale della libreria.
+Nota: l’app usa Three.js da CDN (`jsdelivr`). Per lavorare offline serve sostituire l’import map con una copia locale della libreria.
 
 ---
 
 ## Avvio locale
 
-Serve un browser moderno con WebGL. Aprire direttamente il file con `file://` è sconsigliato: audio, moduli e asset sono più affidabili tramite server locale.
+Serve un browser moderno con WebGL.  
+Aprire direttamente il progetto con `file://` è sconsigliato: audio, moduli e asset funzionano meglio tramite server locale.
 
 ### Metodo rapido su Windows
 
@@ -143,8 +171,16 @@ powershell -ExecutionPolicy Bypass -File apri.ps1
 
 ### Metodo manuale
 
+Su Windows:
+
 ```bash
 py -3 -m http.server 8765
+```
+
+Su macOS o Linux:
+
+```bash
+python3 -m http.server 8765
 ```
 
 Poi apri:
@@ -153,39 +189,33 @@ Poi apri:
 http://127.0.0.1:8765/index.html
 ```
 
-Su macOS/Linux puoi usare:
-
-```bash
-python3 -m http.server 8765
-```
-
 ---
 
 ## Script utili
+
+Rigenera i file `data/*.js` a partire dai rispettivi `.json`:
 
 ```bash
 node scripts/generate-data-js.mjs
 ```
 
-Rigenera i file `data/*.js` a partire dai rispettivi `data/*.json`.
+Ricostruisce `data/frasi-sesto-senso.json` dal dataset curato nello script:
 
 ```bash
 py -3 scripts/build-frasi-sesto-senso.py
 ```
 
-Ricostruisce `data/frasi-sesto-senso.json` dal dataset curato nello script.
+Esporta `sfondo-dot-said.png`, uno sfondo stellato ad alta risoluzione:
 
 ```bash
 py -3 scripts/export-sfondo.py
 ```
 
-Esporta `sfondo-dot-said.png`, uno sfondo stellato ad alta risoluzione.
+Genera un bundle sperimentale del flusso modulare in `js/`. Non è necessario per avviare la pagina corrente:
 
 ```bash
 node scripts/build-bundle.mjs
 ```
-
-Bundle sperimentale del flusso modulare in `js/`. Non è necessario per avviare la pagina corrente.
 
 ---
 
@@ -193,22 +223,22 @@ Bundle sperimentale del flusso modulare in `js/`. Non è necessario per avviare 
 
 ```text
 3d-globe-stars-threejs-main/
-|-- index.html                  # Esperienza interattiva principale
-|-- Dotnation.ttf               # Font custom del brand
-|-- star 1.mp3                  # Audio ambientale introduttivo
-|-- star2.mp3                   # Feedback sonoro sulle interazioni
-|-- apri.bat                    # Avvio rapido Windows
-|-- apri.ps1                    # Avvio rapido PowerShell
+|-- index.html
+|-- Dotnation.ttf
+|-- star 1.mp3
+|-- star2.mp3
+|-- apri.bat
+|-- apri.ps1
 |-- data/
-|   |-- frasi-sesto-senso.json  # Dataset pianeti/frasi
-|   |-- frasi-sesto-senso.js    # Dataset esposto al browser
-|   |-- community-phrases.json  # Frasi community fallback
-|   `-- community-phrases.js    # Frasi community esposte al browser
-|-- js/                         # Moduli e bundle di supporto/sperimentali
-|-- src/                        # Prototipo Three.js precedente
-|-- scripts/                    # Utility per dati, bundle e asset
-|-- public/                     # Texture e immagini di archivio
-`-- assets/                     # Asset grafici di supporto
+|   |-- frasi-sesto-senso.json
+|   |-- frasi-sesto-senso.js
+|   |-- community-phrases.json
+|   `-- community-phrases.js
+|-- js/
+|-- src/
+|-- scripts/
+|-- public/
+`-- assets/
 ```
 
 ---
@@ -216,10 +246,10 @@ Bundle sperimentale del flusso modulare in `js/`. Non è necessario per avviare 
 ## Note di manutenzione
 
 - La versione navigabile oggi è `index.html`.
-- Le cartelle `src/` e `js/` contengono materiale modulare, prototipi e bundle di supporto: non sostituiscono l'entry point attuale.
-- I pianeti della versione corrente sono generati in modo procedurale con canvas e Three.js.
-- I dati dei pianeti/frasi vengono letti da `window.SESTOSENS_DATA`, popolato dagli script in `data/*.js`.
-- Se cambi `data/frasi-sesto-senso.json` o `data/community-phrases.json`, rigenera i `.js` prima di provare la pagina.
+- Le cartelle `src/` e `js/` contengono prototipi, moduli e bundle di supporto.
+- I pianeti sono generati proceduralmente con Canvas e Three.js.
+- I dati vengono letti da `window.SESTOSENS_DATA`, popolato dagli script in `data/*.js`.
+- Se cambi i file `.json`, rigenera i corrispondenti `.js`.
 - Il download genera file PNG direttamente nel browser.
 
 ---
