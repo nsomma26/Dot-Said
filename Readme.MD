@@ -60,7 +60,7 @@ L’esperienza si sviluppa in sette passaggi principali:
    La costellazione viene inviata nello spazio e diventa parte del paesaggio visivo.
 
 <p align="center">
-  <img src="./assets/interazione.gif" alt="Preview desktop di Dot said" width="700">
+  <img src="./assets/interazione.gif" alt="Preview interazione di Dot said" width="700">
 </p>
 
 7. **Pianeti-emozione**  
@@ -79,7 +79,7 @@ L’esperienza si sviluppa in sette passaggi principali:
 
 
 <p align="center">
-  <img src="./assets/pianeti.gif" alt="Preview desktop di Dot said" width="700">
+  <img src="./assets/pianeti.gif" alt="Preview restituzione di Dot said" width="700">
 </p>
 
 ---
