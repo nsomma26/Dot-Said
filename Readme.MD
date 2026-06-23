@@ -258,10 +258,10 @@ node scripts/build-bundle.mjs
 
 **Autrice:** Nicole Somma <br>
 **Email:** nicolesomma26@gmail.com <br>
-**Instagram:** @__nicolesomma__
-**Font**: Dotnation, Andale Mono
-**Audio**: `star 1.mp3`, `star2.mp3`
-**Rendering**: Three.js, Canvas 2D, Web Audio API
+**Instagram:** @__nicolesomma__ <br>
+**Font**: Dotnation, Andale Mono <br>
+**Audio**: `star 1.mp3`, `star2.mp3`<br>
+**Rendering**: Three.js, Canvas 2D, Web Audio API <br>
 
 ---
 
