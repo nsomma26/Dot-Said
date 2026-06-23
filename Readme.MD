@@ -8,7 +8,9 @@ Dot said nasce da una domanda:
 
 > se il sesto senso fossero tutte le cose, che non siamo capaci di dire ad alta voce per paura?
 
-![Demo del progetto](./assets/intro.gif)
+<p align="center">
+  <img src="./assets/intro.gif" alt="Preview desktop di Dot said" width="700">
+</p>
 
 Il progetto immagina il sesto senso come uno spazio digitale in cui il non detto può diventare visibile. L’utente scrive fino a dieci parole, le vede disperdersi nello spazio e le ricompone in una costellazione personale. Una volta completata, la costellazione viene lanciata in un sistema di pianeti-emozione, dove entra in relazione con frasi e tracce appartenenti a una dimensione collettiva.
 
