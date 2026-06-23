@@ -77,10 +77,6 @@ L’esperienza si sviluppa in sette passaggi principali:
 
    Dopo la scelta, entra in un cielo 2D navigabile con frasi e costellazioni associate all’emozione selezionata.
 
-<p align="center">
-  <img src="./assets/pia.gif" alt="Preview restituzione di Dot said" width="700">
-</p>
-
 ---
 
 ## Funzionalità principali
