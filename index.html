@@ -476,12 +476,24 @@
             position: absolute;
             top: 1.05rem;
             left: 1.5rem;
+            border: 0;
+            background: transparent;
+            padding: 0;
             font-family: "Dotnation", sans-serif;
             color: rgba(230, 238, 252, 0.9);
             font-size: 26px;
             letter-spacing: 0.02em;
             text-shadow: 0 0 12px rgba(170, 198, 245, 0.24);
+            cursor: none;
+            pointer-events: auto;
             user-select: none;
+            transition: color 0.2s ease, text-shadow 0.2s ease;
+        }
+        #post-intro-brand:hover,
+        #post-intro-brand:focus-visible {
+            color: rgba(255, 255, 255, 1);
+            text-shadow: 0 0 15px rgba(188, 212, 255, 0.45);
+            outline: none;
         }
         #about-trigger {
             position: absolute;
@@ -711,7 +723,7 @@
     </div>
     <div id="audio-gate" hidden><p id="gate-brand">dot said</p></div>
     <div id="post-intro-ui" aria-hidden="true">
-        <div id="post-intro-brand">dot said</div>
+        <button id="post-intro-brand" type="button" aria-label="Ricomincia l'esperienza da capo">dot said</button>
         <button id="about-trigger" type="button" aria-haspopup="dialog" aria-controls="about-panel" aria-expanded="false">beyond the stars</button>
     </div>
     <aside id="about-panel" role="dialog" aria-modal="false" aria-labelledby="about-title">
@@ -6440,8 +6452,12 @@
             promptScreen.classList.remove('visible');
             promptScreen.classList.add('fade-out');
 
-            setTimeout(() => {
+            if (promptHideTimer) {
+                clearTimeout(promptHideTimer);
+            }
+            promptHideTimer = setTimeout(() => {
                 promptScreen.style.display = 'none';
+                promptHideTimer = null;
             }, FADE_MS);
 
             totalWords = words.length;
@@ -7633,21 +7649,25 @@
 
         animate(0);
 
-        const introScreen = document.getElementById('intro-screen');
-        const introText = document.getElementById('intro-text');
-        const introContinueHint = document.getElementById('intro-continue-hint');
+        let introScreen = document.getElementById('intro-screen');
+        let introText = document.getElementById('intro-text');
+        let introContinueHint = document.getElementById('intro-continue-hint');
         const promptScreen = document.getElementById('prompt-screen');
         const promptInput = document.getElementById('prompt-input');
         const postIntroUi = document.getElementById('post-intro-ui');
+        const postIntroBrand = document.getElementById('post-intro-brand');
         const aboutTrigger = document.getElementById('about-trigger');
         const aboutPanel = document.getElementById('about-panel');
         const aboutClose = document.getElementById('about-close');
         const maxWords = 10;
         const FADE_MS = 1500;
+        let introHintTimer = null;
+        let promptHideTimer = null;
 
         function setPostIntroUiVisible(visible) {
             if (!postIntroUi) return;
             postIntroUi.classList.toggle('visible', visible);
+            postIntroUi.setAttribute('aria-hidden', visible ? 'false' : 'true');
         }
 
         function setAboutPanelOpen(open) {
@@ -7682,6 +7702,207 @@
             }
         });
 
+        function clearIntroContinueListeners() {
+            introContinueReady = false;
+            if (introHintTimer) {
+                clearTimeout(introHintTimer);
+                introHintTimer = null;
+            }
+            introScreen?.removeEventListener('pointerdown', onIntroContinuePointer);
+            document.removeEventListener('keydown', onIntroContinueKey);
+        }
+
+        function showIntroQuestion(hintDelayMs = 650) {
+            clearIntroContinueListeners();
+            hidePlanetChoiceHint();
+            setPostIntroUiVisible(false);
+
+            if (promptScreen) {
+                promptScreen.classList.remove('visible', 'fade-out');
+                promptScreen.style.display = 'none';
+                promptScreen.style.visibility = '';
+            }
+            if (promptInput) {
+                promptInput.value = '';
+            }
+
+            if (introScreen) {
+                introScreen.style.display = '';
+                introScreen.style.visibility = '';
+                introScreen.classList.remove('fade-out', 'visible', 'awaiting-continue');
+            }
+            if (introContinueHint) {
+                introContinueHint.style.display = '';
+                introContinueHint.classList.remove('visible', 'warn');
+                introContinueHint.textContent = 'clicca per continuare';
+            }
+
+            requestAnimationFrame(() => {
+                introScreen?.classList.add('visible');
+            });
+
+            introHintTimer = setTimeout(() => {
+                introHintTimer = null;
+                showIntroContinueHint();
+            }, hintDelayMs);
+        }
+
+        function resetExperienceState() {
+            if (promptHideTimer) {
+                clearTimeout(promptHideTimer);
+                promptHideTimer = null;
+            }
+
+            if (introFadeRaf !== null) {
+                cancelAnimationFrame(introFadeRaf);
+                introFadeRaf = null;
+            }
+
+            exitUserPlanetSkyView();
+            hidePlanetSkyChart();
+            clearUserSkyConstellations();
+            detachStarfieldFromSkyView();
+            restoreUserConstellationSkyStyle();
+            clearHoverState();
+            clearConstellationNameHover();
+            clearPlanetHover();
+            hidePlanetChoiceHint();
+
+            if (userNameLabel) {
+                scene.remove(userNameLabel);
+                userNameLabel = null;
+            }
+            if (userConstellationHoverArea) {
+                userConstellationHoverArea.geometry?.dispose();
+                if (userConstellationHoverArea.material) {
+                    const materials = Array.isArray(userConstellationHoverArea.material)
+                        ? userConstellationHoverArea.material
+                        : [userConstellationHoverArea.material];
+                    materials.forEach((material) => material.dispose());
+                }
+                scene.remove(userConstellationHoverArea);
+                userConstellationHoverArea = null;
+            }
+
+            clearConstellationEditingState();
+            clearGhostAndBridgeState();
+
+            totalWords = 0;
+            clickedStars.clear();
+            clickedNodeOrder.length = 0;
+            constellationComplete = false;
+            viewOnlyMode = false;
+            userConstellationLaunched = false;
+            userLaunchCenter = null;
+            userConstellationName = '';
+            placedConstellationCenters.length = 0;
+            constellationHoverTargets.length = 0;
+            userChosenEmotionPlanetId = null;
+            selectedPlanetId = null;
+            pointerDownPlanetId = null;
+            pointerDownPos = null;
+            pointerDownPick = null;
+            userPlanetSkyMode = false;
+            userPlanetSkyTransition = null;
+            userSkySavedStarPositions = null;
+            userSkySavedControls = null;
+            userSkySavedPlanetVisual = null;
+            userSkySavedCameraFov = null;
+            userSkySavedLinkStyles = null;
+            userSkySavedNameLabelVisible = false;
+            planetSkyActiveId = null;
+            constellationMode = false;
+            dispersingWords = false;
+            dispersionStart = 0;
+            constellationCameraFrame = null;
+            globeLockAnimation = null;
+            galaxy2DMode = false;
+            galaxy2DTransition = null;
+            planetaryMode = false;
+            planetaryTransition = null;
+            planetaryBackgroundStarted = false;
+            planetaryAssetsWarmed = false;
+            planetaryGhostsReady = false;
+            flatConstellationView = false;
+            semanticDriftStart = null;
+            semanticBondRegistry.clear();
+            resetEmotionNames();
+
+            position.set(starHomePositions);
+            geometry.attributes.position.needsUpdate = true;
+            stars.position.set(0, 0, 0);
+            stars.rotation.set(0, 0, 0);
+            wordStarsGroup.visible = true;
+            linesGroup.visible = true;
+            linkStarsGroup.visible = true;
+            ghostConstellationsGroup.visible = false;
+            resonancePointsGroup.visible = true;
+            userSkyConstellationsGroup.visible = false;
+            setPlanetarySystemVisible(false);
+            wordGlimmerPoints.visible = false;
+            updateWordGlimmerGeometry();
+            hoverGlow.visible = false;
+            hoverGlow.material.opacity = 0;
+
+            camera.fov = 80;
+            camera.position.set(0, 0, INTRO_CAMERA_DISTANCE_START);
+            camera.updateProjectionMatrix();
+            controls.target.set(0, 0, 0);
+            controls.enabled = false;
+            controls.autoRotate = false;
+            controls.enableRotate = true;
+            controls.enablePan = true;
+            controls.enableZoom = true;
+            controls.screenSpacePanning = false;
+            controls.zoomSpeed = DEFAULT_CONTROLS_ZOOM_SPEED;
+            controls.panSpeed = 0.85;
+            controls.minDistance = DEFAULT_CONTROLS_MIN_DISTANCE;
+            controls.maxDistance = DEFAULT_CONTROLS_MAX_DISTANCE;
+            controls.mouseButtons = {
+                LEFT: THREE.MOUSE.ROTATE,
+                MIDDLE: THREE.MOUSE.DOLLY,
+                RIGHT: THREE.MOUSE.PAN
+            };
+            controls.update();
+
+            introCameraZoom = null;
+            starfieldBirth = null;
+            starfieldLookTransition = null;
+            starfieldOpacityTarget = INTRO_STAR_OPACITY_END;
+            starfieldSizeScaleTarget = INTRO_STAR_SIZE_END;
+            starfieldUniforms.opacity.value = INTRO_STAR_OPACITY_START;
+            starfieldUniforms.sizeScale.value = INTRO_STAR_SIZE_START;
+            backgroundColorTarget.copy(defaultBackground);
+            scene.background.copy(defaultBackground);
+            ambientLight.intensity = 0.48;
+            sunLight.intensity = 1.15;
+
+            renderer.domElement.style.opacity = '1';
+            renderer.domElement.style.pointerEvents = '';
+            labelRenderer.domElement.style.visibility = '';
+            document.body.classList.remove('planet-sky-mode');
+
+            downloadButton.classList.remove('visible');
+            downloadButton.style.visibility = '';
+            downloadButton.title = 'Scarica la tua costellazione';
+            downloadButton.setAttribute('aria-label', 'Scarica la tua costellazione');
+            backToPlanetsButton.classList.remove('visible');
+            backToPlanetsButton.style.visibility = '';
+        }
+
+        function restartExperienceFromIntro() {
+            if (!experienceStarted) return;
+            unlockAudio();
+            setAboutPanelOpen(false);
+            resetExperienceState();
+            startInitialBackgroundSound();
+            starsRotating = true;
+            startIntroCameraZoom(900);
+            showIntroQuestion(500);
+        }
+
+        postIntroBrand?.addEventListener('click', restartExperienceFromIntro);
+
         function limitWords(value) {
             const words = value.trim().split(/\s+/).filter(Boolean);
             if (words.length <= maxWords) {
@@ -7710,6 +7931,7 @@
         let introContinueReady = false;
 
         function showIntroContinueHint() {
+            clearIntroContinueListeners();
             if (!introContinueHint) return;
             introContinueHint.classList.add('visible');
             introScreen?.classList.add('awaiting-continue');
@@ -7733,8 +7955,7 @@
 
         function dismissIntroAndShowPrompt() {
             if (!introContinueReady) return;
-            introContinueReady = false;
-            document.removeEventListener('keydown', onIntroContinueKey);
+            clearIntroContinueListeners();
 
             if (introScreen) {
                 introScreen.classList.add('fade-out');
@@ -7742,8 +7963,11 @@
                 introContinueHint?.classList.remove('visible');
 
                 setTimeout(() => {
-                    introScreen.remove();
-                    introContinueHint?.remove();
+                    introScreen.style.display = 'none';
+                    introScreen.classList.remove('fade-out');
+                    if (introContinueHint) {
+                        introContinueHint.style.display = 'none';
+                    }
                     showPrompt();
                 }, FADE_MS + 120);
                 return;
@@ -7754,6 +7978,10 @@
         }
 
         function showPrompt() {
+            if (promptHideTimer) {
+                clearTimeout(promptHideTimer);
+                promptHideTimer = null;
+            }
             introCameraZoom = null;
             controls.enabled = true;
             starsRotating = false;
@@ -7876,18 +8104,21 @@
                 particle.vy *= 0.992;
                 particle.life -= particle.decay;
 
-                const alpha = particle.life;
+                const alpha = Math.max(0, particle.life);
                 ctx.fillStyle = `rgba(255, 255, 255, ${alpha})`;
                 if (particle.grain) {
+                    const size = Math.max(0, particle.size * alpha);
                     ctx.fillRect(
                         particle.x - particle.size * 0.5,
                         particle.y - particle.size * 0.5,
-                        particle.size * particle.life,
-                        particle.size * particle.life
+                        size,
+                        size
                     );
                 } else {
+                    const radius = Math.max(0, particle.size * alpha);
+                    if (radius <= 0) return;
                     ctx.beginPath();
-                    ctx.arc(particle.x, particle.y, particle.size * particle.life, 0, Math.PI * 2);
+                    ctx.arc(particle.x, particle.y, radius, 0, Math.PI * 2);
                     ctx.fill();
                 }
             });
@@ -8027,14 +8258,7 @@
             startIntroCameraZoom(1800);
 
             if (introScreen) {
-                introScreen.classList.remove('fade-out');
-                requestAnimationFrame(() => {
-                    introScreen.classList.add('visible');
-                });
-
-                setTimeout(() => {
-                    showIntroContinueHint();
-                }, FADE_MS);
+                showIntroQuestion(FADE_MS);
             } else if (introText) {
                 setTimeout(() => {
                     introText.remove();
